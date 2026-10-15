@@ -2,6 +2,8 @@ import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 import { projects, evidence } from './site-data.js';
+import ProjectOneCaseStudy from './ProjectOneCaseStudy.jsx';
+import ProjectThreeCaseStudy from './ProjectThreeCaseStudy.jsx';
 import ProjectFiveCaseStudy from './ProjectFiveCaseStudy.jsx';
 
 const IntelligenceField = lazy(() => import('./IntelligenceField.jsx'));
@@ -70,13 +72,13 @@ function ProjectShowcase({ project, index }) {
       <div className="tag-list">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
       {project.caseStudyPath ? <a className="case-note case-link" href={project.caseStudyPath}>OPEN CASE STUDY <span aria-hidden="true">↗</span></a> : <span className="case-note">CASE STUDY IN PREPARATION</span>}
     </div>
-    <ProjectVisual index={index} />
+    <ProjectVisual index={project.visualIndex ?? (index % 3)} />
   </article>;
 }
 
 function Projects() {
   return <section className="projects-section" id="projects" aria-labelledby="projects-title">
-    <div className="section-intro projects-intro"><p className="eyebrow">01 / SELECTED ENGINEERING WORK</p><h2 id="projects-title">Systems in progress.<br/><em>Evidence in the making.</em></h2><p>Three explorations across retrieval, software foundations, and AI security. Current status is intentionally provisional while the underlying repositories are reviewed.</p><a className="text-link" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">Browse source on GitHub <Arrow diagonal /></a></div>
+    <div className="section-intro projects-intro"><p className="eyebrow">01 / SELECTED ENGINEERING WORK</p><h2 id="projects-title">Systems in progress.<br/><em>Evidence in the making.</em></h2><p>Four projects spanning software foundations, retrieval, applied AI evaluation, and cybersecurity.</p><a className="text-link" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">Browse source on GitHub <Arrow diagonal /></a></div>
     <div className="showcase-list">{projects.map((project, index) => <ProjectShowcase key={project.title} project={project} index={index} />)}</div>
   </section>;
 }
@@ -103,6 +105,12 @@ function Footer() {
 }
 
 function App() {
+  if (window.location.pathname.replace(/\/$/, "") === "/projects/project-3") {
+    return <ProjectThreeCaseStudy />;
+  }
+  if (window.location.pathname.replace(/\/$/, "") === "/projects/project-1") {
+    return <ProjectOneCaseStudy />;
+  }
   if (window.location.pathname.replace(/\/$/, "") === "/projects/project-5") {
     return <ProjectFiveCaseStudy />;
   }

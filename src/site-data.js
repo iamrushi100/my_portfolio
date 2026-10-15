@@ -2,10 +2,12 @@ export const projects = [
   {
     kind: 'APPLIED AI  /  RETRIEVAL',
     title: 'Intelligent Document Retrieval & Evaluation Platform',
-    description: 'Exploring semantic retrieval, BM25 lexical search, and hybrid retrieval with Reciprocal Rank Fusion. Evaluation is the next step.',
-    status: 'In progress / evaluation next',
+    description: 'Document ingestion, semantic and BM25 retrieval, Reciprocal Rank Fusion, and a reproducible evaluation harness.',
+    status: 'Implemented / evaluation documented',
     tags: ['Semantic retrieval', 'BM25', 'RRF'],
     mark: 'R∕R',
+    caseStudyPath: '/projects/project-1',
+    repositoryUrl: null,
   },
   {
     kind: 'SOFTWARE ENGINEERING  /  BACKEND',
@@ -16,6 +18,17 @@ export const projects = [
     mark: 'P∕O',
   },
   {
+    kind: 'APPLIED AI  /  RETRIEVAL EVALUATION',
+    title: 'RAGWatch — RAG Evaluation & Quality Monitor',
+    description: 'A local-first tool for measuring ranked retrieval against labeled questions, comparing saved runs, and inspecting per-question evidence.',
+    status: 'Implemented / fictional sample evaluation',
+    tags: ['TF-IDF', 'Retrieval metrics', 'Streamlit', 'SQLite'],
+    mark: 'R∕E',
+    caseStudyPath: '/projects/project-3',
+    repositoryUrl: null,
+    visualIndex: 0,
+  },
+  {
     kind: 'CYBERSECURITY  /  AI',
     title: 'AI Security Intelligence & Vulnerability Prioritization Platform',
     description: 'A local decision-support MVP that combines public vulnerability signals with synthetic asset context, transparent scoring, and analyst review.',
@@ -24,6 +37,7 @@ export const projects = [
     mark: 'S∕A',
     caseStudyPath: '/projects/project-5',
     repositoryUrl: null,
+    visualIndex: 2,
   },
 ];
 
