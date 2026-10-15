@@ -42,9 +42,9 @@ function Hero() {
   return <section className="hero" id="top" aria-labelledby="hero-title">
     <div className="hero-scene"><DeferredIntelligenceField /></div>
     <div className="hero-content">
-      <p className="eyebrow"><span className="status-dot" /> SOFTWARE ENGINEERING · AI · GENAI</p>
-<h1 id="hero-title">Building AI<br/>systems you can<br/><em>inspect, test,</em><br/>and trust.</h1>
-<p className="hero-copy">I’m a Computer Engineering graduate building practical software, AI, and data-driven systems across backend engineering, GenAI, retrieval, and evaluation.</p>
+      <p className="eyebrow"><span className="status-dot" /> SOFTWARE ENGINEERING · AI · GENAI · DATA</p>
+<h1 id="hero-title">Building software<br/>and AI systems<br/><em>that solve</em><br/>real problems.</h1>
+<p className="hero-copy">I’m a Computer Engineering graduate building practical software, AI, and data-driven systems across backend engineering, machine learning, GenAI, retrieval, and evaluation.</p>
       <div className="hero-actions"><a className="button button-primary" href="#projects">Explore projects <Arrow /></a><a className="button button-quiet" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">View source <Arrow diagonal /></a></div>
     </div>
     <div className="hero-meta"><span>ENGINEERING EVIDENCE LAB <i>—</i> 01</span><span className="scroll-cue"><span className="scroll-line"/> SCROLL TO EXPLORE</span></div>
