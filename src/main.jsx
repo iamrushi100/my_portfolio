@@ -42,9 +42,9 @@ function Hero() {
   return <section className="hero" id="top" aria-labelledby="hero-title">
     <div className="hero-scene"><DeferredIntelligenceField /></div>
     <div className="hero-content">
-      <p className="eyebrow"><span className="status-dot" /> SOFTWARE · APPLIED AI · CYBERSECURITY</p>
-      <h1 id="hero-title">Building AI<br/>systems you can<br/><em>inspect, test,</em><br/>and trust.</h1>
-      <p className="hero-copy">I build practical software across backend engineering and applied AI, with cybersecurity shaping how I think about reliability, boundaries, and evidence.</p>
+      <p className="eyebrow"><span className="status-dot" /> SOFTWARE ENGINEERING · AI · GENAI</p>
+<h1 id="hero-title">Building AI<br/>systems you can<br/><em>inspect, test,</em><br/>and trust.</h1>
+<p className="hero-copy">I’m a Computer Engineering graduate building practical software, AI, and data-driven systems across backend engineering, GenAI, retrieval, and evaluation.</p>
       <div className="hero-actions"><a className="button button-primary" href="#projects">Explore projects <Arrow /></a><a className="button button-quiet" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">View source <Arrow diagonal /></a></div>
     </div>
     <div className="hero-meta"><span>ENGINEERING EVIDENCE LAB <i>—</i> 01</span><span className="scroll-cue"><span className="scroll-line"/> SCROLL TO EXPLORE</span></div>
@@ -78,7 +78,7 @@ function ProjectShowcase({ project, index }) {
 
 function Projects() {
   return <section className="projects-section" id="projects" aria-labelledby="projects-title">
-    <div className="section-intro projects-intro"><p className="eyebrow">01 / SELECTED ENGINEERING WORK</p><h2 id="projects-title">Systems in progress.<br/><em>Evidence in the making.</em></h2><p>Four projects spanning software foundations, retrieval, applied AI evaluation, and cybersecurity.</p><a className="text-link" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">Browse source on GitHub <Arrow diagonal /></a></div>
+    <div className="section-intro projects-intro"><p className="eyebrow">01 / SELECTED ENGINEERING WORK</p><h2 id="projects-title">Systems in progress.<br/><em>Evidence in the making.</em></h2><p>Three projects spanning retrieval engineering, applied AI evaluation, and cybersecurity.</p><a className="text-link" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">Browse source on GitHub <Arrow diagonal /></a></div>
     <div className="showcase-list">{projects.map((project, index) => <ProjectShowcase key={project.title} project={project} index={index} />)}</div>
   </section>;
 }
@@ -88,7 +88,7 @@ function Evidence() {
     <div className="evidence-top"><p className="eyebrow">02 / ENGINEERING EVIDENCE</p><span className="evidence-state"><i /> EVIDENCE BEING PREPARED</span></div>
     <div className="evidence-main"><h2 id="evidence-title">Claims should<br/><em>leave a trail.</em></h2><p className="evidence-copy">Every project will make its reasoning inspectable: how it is structured, how it behaves under test, and where its current limits are.</p></div>
     <div className="evidence-list">{evidence.map((item, index) => <div className="evidence-row" key={item}><span className="evidence-number">0{index + 1}</span><span className="evidence-name">{item}</span><span className="evidence-availability">PLANNED ARTIFACT</span><span className="evidence-arrow" aria-hidden="true">↗</span></div>)}</div>
-    <p className="evidence-foot">These artifacts are not published yet. They will be linked here when prepared and reviewed.</p>
+    <p className="evidence-copy">The work is documented through implementation details, tests, evaluation results, architecture decisions, and explicit notes on current limitations.</p>
   </section>;
 }
 
@@ -96,7 +96,8 @@ function About() {
   return <section className="about-section" id="about" aria-labelledby="about-title">
     <div className="about-serial">03<br/><span>ABOUT</span></div>
     <div className="about-main"><p className="eyebrow">A PRACTICE OF BUILDING AND VERIFYING</p><h2 id="about-title">Curious by nature.<br/><em>Rigorous by design.</em></h2></div>
-    <div className="about-detail"><p>I’m a Computer Engineering graduate with Cybersecurity Honors, building a foundation across software engineering, applied AI, and security.</p><p>This portfolio is a working record of that practice: what was built, what the evidence says, and what still needs attention.</p></div>
+    <div className="about-detail"><p>I’m a Computer Engineering graduate with Cybersecurity Honors, focused on building practical AI systems across retrieval, evaluation, backend engineering, and security.</p>
+<p>I care about more than getting a model to produce an answer. I want to understand how the system retrieves information, how its behavior is evaluated, where it fails, and what evidence supports its claims.</p></div>
   </section>;
 }
 
