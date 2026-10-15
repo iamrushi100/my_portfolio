@@ -84,20 +84,77 @@ function Projects() {
 }
 
 function Evidence() {
+  const evidence = [
+    'Source code and implementation',
+    'Automated tests and validation',
+    'Retrieval and evaluation results',
+    'Architecture and design decisions',
+    'Failure modes and limitations',
+  ];
+
   return <section className="evidence-section" id="evidence" aria-labelledby="evidence-title">
-    <div className="evidence-top"><p className="eyebrow">02 / ENGINEERING EVIDENCE</p><span className="evidence-state"><i /> EVIDENCE BEING PREPARED</span></div>
-    <div className="evidence-main"><h2 id="evidence-title">Claims should<br/><em>leave a trail.</em></h2><p className="evidence-copy">Every project will make its reasoning inspectable: how it is structured, how it behaves under test, and where its current limits are.</p></div>
-    <div className="evidence-list">{evidence.map((item, index) => <div className="evidence-row" key={item}><span className="evidence-number">0{index + 1}</span><span className="evidence-name">{item}</span><span className="evidence-availability">PLANNED ARTIFACT</span><span className="evidence-arrow" aria-hidden="true">↗</span></div>)}</div>
-    <p className="evidence-copy">The work is documented through implementation details, tests, evaluation results, architecture decisions, and explicit notes on current limitations.</p>
+    <div className="evidence-top">
+      <p className="eyebrow">02 / ENGINEERING EVIDENCE</p>
+      <span className="evidence-state"><i /> DOCUMENTED · TESTED · EVALUATED</span>
+    </div>
+
+    <div className="evidence-main">
+      <h2 id="evidence-title">Claims should<br/><em>leave a trail.</em></h2>
+      <p className="evidence-copy">
+        I document how systems are built, how they are tested, what the results show,
+        and where the evidence stops.
+      </p>
+    </div>
+
+    <div className="evidence-list">
+      {evidence.map((item, index) => (
+        <div className="evidence-row" key={item}>
+          <span className="evidence-number">0{index + 1}</span>
+          <span className="evidence-name">{item}</span>
+          <span className="evidence-availability">AVAILABLE</span>
+          <span className="evidence-arrow" aria-hidden="true">↗</span>
+        </div>
+      ))}
+    </div>
+
+    <p className="evidence-copy">
+      Project case studies connect implementation details with tests, evaluation
+      results, architecture decisions, and explicit limitations instead of relying
+      only on screenshots or claims.
+    </p>
   </section>;
 }
 
 function About() {
   return <section className="about-section" id="about" aria-labelledby="about-title">
     <div className="about-serial">03<br/><span>ABOUT</span></div>
-    <div className="about-main"><p className="eyebrow">A PRACTICE OF BUILDING AND VERIFYING</p><h2 id="about-title">Curious by nature.<br/><em>Rigorous by design.</em></h2></div>
-    <div className="about-detail"><p>I’m a Computer Engineering graduate with Cybersecurity Honors, focused on building practical AI systems across retrieval, evaluation, backend engineering, and security.</p>
-<p>I care about more than getting a model to produce an answer. I want to understand how the system retrieves information, how its behavior is evaluated, where it fails, and what evidence supports its claims.</p></div>
+    <div className="about-main"><p className="eyebrow">SOFTWARE · AI · DATA · SECURITY</p><h2 id="about-title">Building with curiosity.<br/><em>Engineering with evidence.</em></h2></div>
+    <div className="about-detail">
+      <p>I’m a Computer Engineering graduate with Cybersecurity Honors, building practical software across backend engineering, machine learning, GenAI, data, and intelligent applications.</p>
+      <p>I like working across the full path from data and system design to implementation, evaluation, and iteration. I care about understanding how a system works, measuring whether it works, and making its limitations clear.</p>
+    </div>
+    <div className="skills-grid" aria-label="Technical skills">
+      <div className="skill-group">
+        <p className="skill-label">SOFTWARE ENGINEERING</p>
+        <p>Python · FastAPI · REST APIs · SQL · SQLite · Git · Docker</p>
+      </div>
+      <div className="skill-group">
+        <p className="skill-label">AI / MACHINE LEARNING</p>
+        <p>scikit-learn · PyTorch · TensorFlow · NLP · Machine Learning · Data Analysis</p>
+      </div>
+      <div className="skill-group">
+        <p className="skill-label">GENAI / RETRIEVAL</p>
+        <p>RAG · Embeddings · Semantic Search · BM25 · Hybrid Retrieval · LLM Evaluation · LangChain</p>
+      </div>
+      <div className="skill-group">
+        <p className="skill-label">DATA</p>
+        <p>pandas · NumPy · EDA · SQL · Metrics · Evaluation</p>
+      </div>
+      <div className="skill-group">
+        <p className="skill-label">SECURITY</p>
+        <p>Cybersecurity · Vulnerability Prioritization · Security Engineering</p>
+      </div>
+    </div>
   </section>;
 }
 
