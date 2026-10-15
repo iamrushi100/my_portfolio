@@ -1,5 +1,13 @@
 export const projectFive = {
+  id: 'project-5',
   title: 'AI Security Intelligence & Vulnerability Prioritization Platform',
+  status: 'Local MVP · synthetic fixture',
+  description: 'A local decision-support workflow that organizes vulnerability evidence and asset context for analyst review.',
+  tags: ['Python', 'FastAPI', 'Streamlit', 'SQLite'],
+  caseStudyPath: '/projects/project-5',
+  repositoryUrl: null,
+  sourceStatus: 'Repository URL not verified or linked',
+  requiredSections: ['problem', 'architecture', 'evidence', 'scoring', 'evaluation', 'review', 'decisions', 'scope'],
   stack: ['Python', 'FastAPI', 'Streamlit', 'SQLite'],
   factors: [
     { name: 'CVSS base score', weight: 40, normalization: 'score / 10' },
@@ -9,6 +17,7 @@ export const projectFive = {
     { name: 'Internet exposure', weight: 5, normalization: 'internet-facing = 1; internal = 0' },
   ],
   syntheticEvaluation: {
+    label: 'Synthetic fixture evaluation',
     fixture: 'demo-fixture-v1', vulnerabilities: 6, assets: 6, pairs: 36,
     scorablePairs: 4, scorablePercent: 11.11, medianSeconds: 0.047732, runtimeCalls: 7,
     contextualOrder: ['CVE-2099-0002', 'CVE-2099-0003', 'CVE-2099-0001', 'CVE-2099-0004'],

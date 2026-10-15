@@ -68,7 +68,7 @@ function ProjectShowcase({ project, index }) {
       <h3>{project.title}</h3>
       <p className="project-description">{project.description}</p>
       <div className="tag-list">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-      {project.href ? <a className="case-note case-link" href={project.href}>OPEN CASE STUDY <span aria-hidden="true">↗</span></a> : <span className="case-note">CASE STUDY IN PREPARATION <span aria-hidden="true">↗</span></span>}
+      {project.caseStudyPath ? <a className="case-note case-link" href={project.caseStudyPath}>OPEN CASE STUDY <span aria-hidden="true">↗</span></a> : <span className="case-note">CASE STUDY IN PREPARATION</span>}
     </div>
     <ProjectVisual index={index} />
   </article>;

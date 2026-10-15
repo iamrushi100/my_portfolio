@@ -22,7 +22,8 @@ export const projects = [
     status: 'Local MVP / synthetic demo',
     tags: ['Security intelligence', 'FastAPI', 'Streamlit', 'SQLite'],
     mark: 'S∕A',
-    href: '/projects/project-5',
+    caseStudyPath: '/projects/project-5',
+    repositoryUrl: null,
   },
 ];
 

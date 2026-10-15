@@ -18,8 +18,15 @@ import { projectFive } from './case-study-data.js';
 
 test('Project 5 portfolio content uses verified score weights and synthetic evaluation labels', () => {
   assert.equal(projectFive.title, 'AI Security Intelligence & Vulnerability Prioritization Platform');
+  assert.equal(projectFive.caseStudyPath, '/projects/project-5');
+  assert.equal(projectFive.sourceStatus, 'Repository URL not verified or linked');
+  assert.equal(projectFive.repositoryUrl, null);
+  assert.equal(projects[2].caseStudyPath, projectFive.caseStudyPath);
+  assert.equal(projects[2].repositoryUrl, null);
+  assert.deepEqual(projectFive.requiredSections, ['problem', 'architecture', 'evidence', 'scoring', 'evaluation', 'review', 'decisions', 'scope']);
   assert.equal(projectFive.factors.reduce((sum, factor) => sum + factor.weight, 0), 100);
   assert.deepEqual(projectFive.factors.map(({ weight }) => weight), [40, 20, 25, 10, 5]);
+  assert.equal(projectFive.syntheticEvaluation.label, 'Synthetic fixture evaluation');
   assert.equal(projectFive.syntheticEvaluation.fixture, 'demo-fixture-v1');
   assert.equal(projectFive.syntheticEvaluation.pairs, 36);
   assert.equal(projectFive.syntheticEvaluation.scorablePairs, 4);
