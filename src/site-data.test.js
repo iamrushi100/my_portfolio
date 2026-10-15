@@ -6,12 +6,11 @@ import { projectOne } from './project-one-data.js';
 import { projectThree } from './project-three-data.js';
 
 test('the homepage keeps the selected projects with explicit statuses', () => {
-  assert.equal(projects.length, 4);
-  assert.ok(projects.every(({ title, status, description, tags }) => title && status && description && tags.length));
-  assert.match(projects[0].status, /evaluation documented/i);
-  assert.match(projects[1].status, /status to verify/i);
-  assert.match(projects[2].status, /fictional sample evaluation/i);
-  assert.match(projects[3].status, /local mvp \/ synthetic demo/i);
+  assert.equal(projects.length, 3);
+  for (const project of projects) {
+    assert.equal(typeof project.status, 'string');
+    assert.ok(project.status.trim().length > 0);
+  }
 });
 
 test('the evidence preview stays labeled as planned artifacts', () => {

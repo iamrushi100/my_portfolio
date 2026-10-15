@@ -10,14 +10,6 @@ export const projects = [
     repositoryUrl: null,
   },
   {
-    kind: 'SOFTWARE ENGINEERING  /  BACKEND',
-    title: 'Placement OS',
-    description: 'A placement workflow app built around habits, focus sessions, streaks, and performance tracking. Current project status is to be verified.',
-    status: 'In progress / status to verify',
-    tags: ['FastAPI', 'SQLite', 'Tracking'],
-    mark: 'P∕O',
-  },
-  {
     kind: 'APPLIED AI  /  RETRIEVAL EVALUATION',
     title: 'RAGWatch — RAG Evaluation & Quality Monitor',
     description: 'A local-first tool for measuring ranked retrieval against labeled questions, comparing saved runs, and inspecting per-question evidence.',
