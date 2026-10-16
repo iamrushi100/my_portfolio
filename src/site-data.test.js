@@ -20,33 +20,94 @@ test('the evidence preview stays labeled as planned artifacts', () => {
 import { projectFive } from './case-study-data.js';
 
 test('Project 5 portfolio content uses verified score weights and synthetic evaluation labels', () => {
-  assert.equal(projectFive.title, 'AI Security Intelligence & Vulnerability Prioritization Platform');
+  assert.equal(projectFive.title, 'Vulnerability Prioritization with Evidence and Asset Context');
   assert.equal(projectFive.caseStudyPath, '/projects/project-5');
-  assert.equal(projectFive.sourceStatus, 'Repository URL not verified or linked');
-  assert.equal(projectFive.repositoryUrl, null);
+  assert.equal(projectFive.sourceStatus, 'Public GitHub repository');
+  assert.equal(projectFive.repositoryUrl, 'https://github.com/iamrushi100/ai-security-vulnerability-prioritizer');
   const projectFiveCard = projects.find(({ caseStudyPath }) => caseStudyPath === projectFive.caseStudyPath);
   assert.ok(projectFiveCard);
-  assert.equal(projectFiveCard.repositoryUrl, null);
-  assert.deepEqual(projectFive.requiredSections, ['problem', 'architecture', 'evidence', 'scoring', 'evaluation', 'review', 'decisions', 'scope']);
+  assert.equal(projectFiveCard.repositoryUrl, projectFive.repositoryUrl);
+  assert.deepEqual(projectFive.requiredSections, ['problem', 'architecture', 'evidence', 'scoring', 'evaluation', 'review', 'decisions', 'scope', 'next-steps', 'links']);
   assert.equal(projectFive.factors.reduce((sum, factor) => sum + factor.weight, 0), 100);
   assert.deepEqual(projectFive.factors.map(({ weight }) => weight), [40, 20, 25, 10, 5]);
+  assert.deepEqual(projectFive.factors.map(({ normalization }) => normalization), [
+    'score / 10', 'probability from 0 to 1', 'listed = 1; eligible not-listed = 0',
+    '(criticality - 1) / 4', 'internet-facing = 1; internal = 0',
+  ]);
+  assert.deepEqual(projectFive.sources.map(({ label }) => label), [
+    'NVD · vulnerability facts', 'CISA KEV · known-exploitation evidence',
+    'FIRST EPSS · exploitation-likelihood estimate',
+  ]);
+  assert.match(projectFive.matching.join(' '), /NVD applicability is preferred/i);
+  assert.match(projectFive.matching.join(' '), /KEV vendor\/product name matching is a fallback only/i);
+  assert.match(projectFive.matching.join(' '), /ranges and CPE conditions are retained but not evaluated/i);
+  assert.match(projectFive.scoringExplanation, /not a trained ML model/i);
+  assert.match(projectFive.validationEvidence.join(' '), /CVE syntax/i);
+  assert.match(projectFive.validationEvidence.join(' '), /finite and within 0–10/i);
+  assert.match(projectFive.validationEvidence.join(' '), /UTC-aware timestamps/i);
+  assert.ok(projectFive.limitations.some((item) => /weights.*provisional/i.test(item)));
+  assert.ok(projectFive.limitations.some((item) => /No ML model was trained/i.test(item)));
+  assert.ok(projectFive.nextSteps.some((item) => /authentic, timestamped KEV, EPSS, and NVD snapshots/i.test(item)));
   assert.equal(projectFive.syntheticEvaluation.label, 'Synthetic fixture evaluation');
   assert.equal(projectFive.syntheticEvaluation.fixture, 'demo-fixture-v1');
   assert.equal(projectFive.syntheticEvaluation.pairs, 36);
   assert.equal(projectFive.syntheticEvaluation.scorablePairs, 4);
   assert.equal(projectFive.syntheticEvaluation.medianSeconds, 0.047732);
+  assert.equal(projectFive.syntheticEvaluation.runtimeCalls, 7);
+  assert.equal(projectFive.syntheticEvaluation.asOf, '2026-10-11T12:00:00Z');
+  assert.equal(projectFive.syntheticEvaluation.reportTimestamp, '2026-10-11T18:04:22.840711Z');
+  assert.equal(projectFive.syntheticEvaluation.unknownApplicabilityPairs, 7);
+  assert.equal(projectFive.syntheticEvaluation.staleFactorPairs, 6);
+  assert.match(projectFive.description, /deterministic weighted heuristic/i);
+  assert.match(projectFive.supportingCapability, /optional Groq.*separately.*no ML model/i);
+  assert.match(projectFive.assetContext, /fictional assets.*candidate\/context relationships.*do not confirm real infrastructure/i);
+  assert.match(projectFive.syntheticEvaluation.caveat, /does not establish ranking quality, predictive accuracy, security outcomes, or real-world effectiveness/i);
   assert.ok(projectFive.artifacts.some(({ name, status }) => /screenshot/i.test(name) && /not captured/i.test(status)));
+  assert.ok(projectFive.artifacts.some(({ name, status }) => /test run output/i.test(name) && /not captured/i.test(status)));
+  assert.ok(projectFive.artifacts.some(({ name, status }) => /documented prior test run/i.test(name) && /133 passed.*not captured/i.test(status)));
+  assert.ok(projectFive.artifacts.some(({ name, status }) => /public source repository/i.test(name) && /verified and linked/i.test(status)));
+  const projectFivePage = readFileSync(new URL('./ProjectFiveCaseStudy.jsx', import.meta.url), 'utf8');
+  assert.match(projectFivePage, /NVD, CISA KEV, and FIRST EPSS fetch clients are implemented/i);
+  assert.match(projectFivePage, /not produced by live external-source fetches/i);
+  assert.match(projectFivePage, /Input and evidence validation/);
+  assert.match(projectFivePage, /not an authorization or security boundary/i);
+  assert.ok(projectFivePage.includes('CVSS-only {row.cvssBaseline} · coverage {row.coverage}%'));
+  assert.match(projectFivePage, /local micro-workload, \$\{e\.runtimeCalls\} assessment runs/i);
+  assert.match(projectFivePage, /not a capacity or production benchmark/i);
+  assert.match(projectFivePage, /SYNTHETIC RESULT SUMMARY/);
+  assert.match(projectFivePage, /title="Next engineering steps"/);
+  assert.match(projectFivePage, /title="Source & artifacts"/);
+  for (const section of projectFive.requiredSections) {
+    assert.ok(projectFivePage.includes(`id="${section}"`), `missing Project 5 section: ${section}`);
+  }
 });
 
 test('Project 1 has a linked case study with all required sections', () => {
   assert.equal(projects[0].caseStudyPath, '/projects/project-1');
   assert.equal(projectOne.caseStudyPath, projects[0].caseStudyPath);
-  assert.equal(projectOne.repositoryUrl, null);
+  assert.equal(projectOne.repositoryUrl, 'https://github.com/iamrushi100/intelligent-document-retrieval');
+  assert.match(projectOne.sourceStatus, /published RAG milestone 770b1f5/i);
+  assert.doesNotMatch(projectOne.sourceStatus, /one commit behind|not published/i);
   assert.equal(projectOne.evaluation.resultPath, 'evaluation/results/evaluation.json');
   const page = readFileSync(new URL('./ProjectOneCaseStudy.jsx', import.meta.url), 'utf8');
   for (const section of projectOne.requiredSections) {
     assert.ok(page.includes(`id="${section}"`), `missing case-study section: ${section}`);
   }
+  assert.ok(page.includes('CaseStudySection'));
+  assert.match(page, /FIXTURE RESULT/);
+  assert.match(page, /DOCUMENTED PRIOR RUN/);
+  assert.match(page, /title="Scope & limitations"/);
+  assert.match(page, /title="Source & artifacts"/);
+  const layout = readFileSync(new URL('./CaseStudyLayout.jsx', import.meta.url), 'utf8');
+  assert.ok(layout.includes("'./case-study-layout.css'"));
+  assert.deepEqual(projectOne.architecture.ingestion.map(({ title }) => title), [
+    'Document upload', 'Validate + parse', 'Normalize', 'Chunk', 'Prepare + persist indexes',
+  ]);
+  assert.equal(projectOne.architecture.indexes.length, 2);
+  assert.equal(projectOne.architecture.fusion.title, 'Hybrid retrieval');
+  assert.equal(projectOne.architecture.output.title, 'Ranked results');
+  assert.equal(projectOne.architecture.evaluation.title, 'Evaluation');
+  assert.ok(projectOne.requiredSections.includes('rag-generation'));
 });
 
 test('Project 1 evaluation values and evidence counts match the checked-in report', () => {
@@ -61,20 +122,89 @@ test('Project 1 evaluation values and evidence counts match the checked-in repor
     [[0.9615, 0.9615, 0.9615], [1, 0.3333, 0.9808], [1, 0.2, 0.9808]],
     [[1, 1, 1], [1, 0.3333, 1], [1, 0.2, 1]],
   ]);
-  assert.deepEqual([projectOne.evidence.testFunctions, projectOne.evidence.testModules], [35, 9]);
+  assert.deepEqual([projectOne.evidence.documentedTestRun, projectOne.evidence.testModules], ['62 passed', 11]);
+  assert.match(projectOne.evidence.testStatus, /public README.*770b1f5/i);
+  assert.match(projectOne.evidence.testStatus, /documented prior run/i);
+  assert.ok(projectOne.evidence.artifacts.every(({ status }) => typeof status === 'string' && status.length > 0));
+  assert.ok(projectOne.evidence.artifacts.some(({ name, status }) => /test output/i.test(name) && /not captured/i.test(status)));
+  assert.ok(projectOne.evidence.artifacts.some(({ name, status }) => /dashboard screenshot/i.test(name) && /not captured/i.test(status)));
+  assert.match(projectOne.evaluation.interpretation, /no measured advantage for hybrid over semantic/i);
+  assert.ok(projectOne.decisions.some(({ title }) => /separately from generation/i.test(title)));
+});
+
+test('Project 1 implementation details and future work remain evidence-labeled', () => {
+  assert.equal(projectOne.repositoryUrl, 'https://github.com/iamrushi100/intelligent-document-retrieval');
+  assert.equal(projectOne.ingestion.maxUploadBytes, 10 * 1024 * 1024);
+  assert.equal(projectOne.chunking.sizeCharacters, 1000);
+  assert.equal(projectOne.chunking.overlapCharacters, 150);
+  assert.equal(projectOne.semantic.dimensions, 384);
+  assert.equal(projectOne.semantic.model, 'sentence-transformers/all-MiniLM-L6-v2');
+  assert.match(projectOne.hybrid.behavior, /one-based rank/i);
+  assert.match(projectOne.evaluation.label, /authored fixture/i);
+  assert.match(projectOne.evaluation.caveat, /not a representative benchmark/i);
+  assert.ok(projectOne.evidence.testCoverage.length >= 4);
+  assert.ok(projectOne.nextSteps.some((step) => /SQLite-backed run history/i.test(step)));
+  assert.ok(projectOne.nextSteps.some((step) => /metric-pipeline checks separate/i.test(step)));
+});
+
+test('Project 1 documents the implemented RAG path without claiming answer quality', () => {
+  const { generation } = projectOne;
+  assert.equal(generation.endpoint, 'POST /ask');
+  assert.match(generation.context, /filename, document ID, chunk ID, retrieval score/i);
+  assert.match(generation.mock, /deterministic mock/i);
+  assert.match(generation.openai, /optional OpenAI Responses API/i);
+  assert.match(generation.openai, /Live OpenAI behavior is not validated/i);
+  assert.match(generation.empty, /does not call the generator/i);
+  assert.match(generation.failure, /generic HTTP 502/i);
+  assert.match(generation.caveat, /not a guarantee/i);
+  assert.match(generation.caveat, /does not score generated answers/i);
+  const page = readFileSync(new URL('./ProjectOneCaseStudy.jsx', import.meta.url), 'utf8');
+  assert.match(page, /id="rag-generation"/);
+  assert.match(page, /source-labeled context/i);
+  assert.match(page, /DOCUMENTED PRIOR RUN/);
+  assert.doesNotMatch(page, /DECLARED TEST FUNCTIONS|one commit behind/i);
 });
 
 test('Project 3 route, homepage card, and required case-study sections are wired', () => {
   const card = projects.find(({ caseStudyPath }) => caseStudyPath === projectThree.caseStudyPath);
   assert.ok(card);
   assert.equal(projectThree.caseStudyPath, '/projects/project-3');
-  assert.equal(projectThree.repositoryUrl, null);
+  assert.equal(projectThree.repositoryUrl, 'https://github.com/iamrushi100/RAGWatch');
+  assert.match(projectThree.overviewSummary, /TF-IDF baseline.*fictional fixture.*controlled\/artificial experiment/i);
   const page = readFileSync(new URL('./ProjectThreeCaseStudy.jsx', import.meta.url), 'utf8');
   const app = readFileSync(new URL('./main.jsx', import.meta.url), 'utf8');
   assert.ok(app.includes('"/projects/project-3"'));
   for (const section of projectThree.requiredSections) {
     assert.ok(page.includes(`id="${section}"`), `missing case-study section: ${section}`);
   }
+});
+
+test('all project case studies expose the verified GitHub repository URLs', () => {
+  const expected = new Map([
+    ['project-1', 'https://github.com/iamrushi100/intelligent-document-retrieval'],
+    ['project-3', 'https://github.com/iamrushi100/RAGWatch'],
+    ['project-5', 'https://github.com/iamrushi100/ai-security-vulnerability-prioritizer'],
+  ]);
+  const data = [projectOne, projectThree, projectFive];
+  for (const project of data) {
+    assert.equal(project.repositoryUrl, expected.get(project.id));
+    const card = projects.find(({ caseStudyPath }) => caseStudyPath === project.caseStudyPath);
+    assert.equal(card?.repositoryUrl, project.repositoryUrl);
+  }
+  const caseStudies = [
+    ['ProjectOneCaseStudy.jsx', 'p1-button-primary'],
+    ['ProjectThreeCaseStudy.jsx', 'p3-button-primary'],
+    ['ProjectFiveCaseStudy.jsx', 'p5-button-primary'],
+  ];
+  for (const [filename, actionClass] of caseStudies) {
+    const page = readFileSync(new URL(`./${filename}`, import.meta.url), 'utf8');
+    assert.ok(page.includes(actionClass), `${filename} should render an actionable source link`);
+    assert.ok(page.includes('View GitHub repository'));
+  }
+  assert.match(projectThree.metrics.label, /SYNTHETIC \/ FICTIONAL/i);
+  assert.match(projectThree.regression.label, /FICTIONAL FIXTURE/i);
+  assert.match(projectFive.syntheticEvaluation.label, /synthetic fixture/i);
+  assert.match(projectOne.evaluation.label, /authored fixture/i);
 });
 
 test('Project 3 uses verified sample metrics and inversion results with explicit fixture labels', () => {
@@ -96,9 +226,17 @@ test('Project 3 evidence labels describe reports, tests, dashboard/history, and 
   const labels = projectThree.evidence.map(({ label }) => label);
   assert.deepEqual(labels, [
     'Automated tests', 'Evaluation reports', 'Controlled regression report',
-    'SQLite history + dashboard', 'Continuous integration',
+    'SQLite history + dashboard', 'Continuous integration', 'Test output',
   ]);
-  assert.equal(labels.length, 5);
+  assert.equal(labels.length, 6);
   assert.match(projectThree.evidence[0].detail, /12 pytest modules/);
+  assert.match(projectThree.evidence[0].detail, /174 passed.*no current test run is claimed/i);
+  assert.match(projectThree.evidence[1].detail, /Checked-in JSON/);
   assert.match(projectThree.evidence[4].detail, /Python 3\.13/);
+  assert.match(projectThree.evidence[4].detail, /current remote CI status is not verified/i);
+  const page = readFileSync(new URL('./ProjectThreeCaseStudy.jsx', import.meta.url), 'utf8');
+  assert.doesNotMatch(page, /this case-study change/i);
+  assert.match(page, /prior local run of 174 passing tests/i);
+  assert.match(page, /title="Scope & limitations"/);
+  assert.match(page, /title="Source & artifacts"/);
 });
