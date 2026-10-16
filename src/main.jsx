@@ -42,9 +42,9 @@ function Hero() {
   return <section className="hero" id="top" aria-labelledby="hero-title">
     <div className="hero-scene"><DeferredIntelligenceField /></div>
     <div className="hero-content">
-      <p className="eyebrow"><span className="status-dot" /> SOFTWARE ENGINEERING · AI · GENAI · DATA</p>
-<h1 id="hero-title">Building software<br/>and AI systems<br/><em>that solve</em><br/>real problems.</h1>
-<p className="hero-copy">I’m a Computer Engineering graduate building practical software, AI, and data-driven systems across backend engineering, machine learning, GenAI, retrieval, and evaluation.</p>
+      <p className="eyebrow"><span className="status-dot" /> AI ENGINEERING · AI/ML · SOFTWARE · CYBERSECURITY</p>
+<h1 id="hero-title">AI engineering<br/>for retrieval,<br/><em>evaluation,</em><br/>and security.</h1>
+<p className="hero-copy">I’m a Computer Engineering graduate building software across retrieval, GenAI, and evaluation, with cybersecurity work shown through vulnerability prioritization.</p>
       <div className="hero-actions"><a className="button button-primary" href="#projects">Explore projects <Arrow /></a><a className="button button-quiet" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">View source <Arrow diagonal /></a></div>
     </div>
     <div className="hero-meta"><span>ENGINEERING EVIDENCE LAB <i>—</i> 01</span><span className="scroll-cue"><span className="scroll-line"/> SCROLL TO EXPLORE</span></div>
@@ -53,11 +53,11 @@ function Hero() {
 }
 
 function ProjectVisual({ index }) {
-  const titles = ['RETRIEVAL / RANKING', 'SYSTEM / WORKFLOW', 'THREAT / PRIORITY'];
+  const titles = ['RETRIEVAL / RANKING', 'EVALUATION / COMPARISON', 'THREAT / PRIORITY'];
   return <div className={`project-visual project-visual-${index + 1}`} aria-hidden="true">
     <div className="visual-label">{titles[index]} <span>0{index + 1}</span></div>
     {index === 0 && <svg viewBox="0 0 620 340"><g className="diagram-grid">{Array.from({ length: 9 }, (_, i) => <path key={`v${i}`} d={`M${i * 77 + 3} 0V340`} />)}{Array.from({ length: 5 }, (_, i) => <path key={`h${i}`} d={`M0 ${i * 84 + 2}H620`} />)}</g><g className="diagram-links"><path d="M78 168 214 105 345 168 492 111M78 168 214 234 345 168 492 230M214 105 214 234M345 168 492 111 530 170 492 230" /></g><g className="diagram-points"><circle cx="78" cy="168" r="7"/><circle cx="214" cy="105" r="5"/><circle cx="214" cy="234" r="5"/><circle cx="345" cy="168" r="9"/><circle cx="492" cy="111" r="5"/><circle cx="492" cy="230" r="5"/><circle cx="530" cy="170" r="4"/></g><g className="diagram-caps"><text x="46" y="202">QUERY</text><text x="166" y="79">SEMANTIC</text><text x="179" y="260">BM25</text><text x="318" y="200">RRF</text><text x="465" y="84">RANK</text></g></svg>}
-    {index === 1 && <svg viewBox="0 0 620 340"><g className="diagram-grid">{Array.from({ length: 9 }, (_, i) => <path key={`v${i}`} d={`M${i * 77 + 3} 0V340`} />)}{Array.from({ length: 5 }, (_, i) => <path key={`h${i}`} d={`M0 ${i * 84 + 2}H620`} />)}</g><g className="workflow-lines"><path d="M98 176H220M252 176H368M401 176H515" /></g><g className="workflow-boxes"><rect x="62" y="133" width="90" height="86" rx="2"/><rect x="220" y="133" width="90" height="86" rx="2"/><rect x="368" y="133" width="90" height="86" rx="2"/><rect x="515" y="133" width="53" height="86" rx="2"/></g><g className="diagram-points"><circle cx="98" cy="176" r="6"/><circle cx="266" cy="176" r="6"/><circle cx="414" cy="176" r="6"/><circle cx="541" cy="176" r="4"/></g><g className="diagram-caps"><text x="81" y="184">PLAN</text><text x="234" y="184">FOCUS</text><text x="380" y="184">TRACK</text><text x="523" y="184">REVIEW</text></g></svg>}
+    {index === 1 && <svg viewBox="0 0 620 340"><g className="diagram-grid">{Array.from({ length: 9 }, (_, i) => <path key={`v${i}`} d={`M${i * 77 + 3} 0V340`} />)}{Array.from({ length: 5 }, (_, i) => <path key={`h${i}`} d={`M0 ${i * 84 + 2}H620`} />)}</g><g className="workflow-lines"><path d="M98 176H220M252 176H368M401 176H515" /></g><g className="workflow-boxes"><rect x="62" y="133" width="90" height="86" rx="2"/><rect x="220" y="133" width="90" height="86" rx="2"/><rect x="368" y="133" width="90" height="86" rx="2"/><rect x="515" y="133" width="53" height="86" rx="2"/></g><g className="diagram-points"><circle cx="98" cy="176" r="6"/><circle cx="266" cy="176" r="6"/><circle cx="414" cy="176" r="6"/><circle cx="541" cy="176" r="4"/></g><g className="diagram-caps"><text x="81" y="184">DATA</text><text x="238" y="184">TF-IDF</text><text x="387" y="184">METRIC</text><text x="523" y="184">DELTA</text></g></svg>}
     {index === 2 && <svg viewBox="0 0 620 340"><g className="diagram-grid">{Array.from({ length: 9 }, (_, i) => <path key={`v${i}`} d={`M${i * 77 + 3} 0V340`} />)}{Array.from({ length: 5 }, (_, i) => <path key={`h${i}`} d={`M0 ${i * 84 + 2}H620`} />)}</g><circle className="risk-orbit orbit-a" cx="310" cy="170" r="112"/><circle className="risk-orbit orbit-b" cx="310" cy="170" r="77"/><path className="risk-vector" d="M310 170 391 112M310 170 251 231M310 170 430 192"/><g className="diagram-points"><circle cx="310" cy="170" r="9"/><circle cx="391" cy="112" r="6"/><circle cx="251" cy="231" r="5"/><circle cx="430" cy="192" r="4"/></g><g className="diagram-caps"><text x="272" y="160">SIGNAL</text><text x="393" y="105">ASSET</text><text x="205" y="250">PRIORITY</text></g></svg>}
   </div>;
 }
@@ -84,18 +84,10 @@ function Projects() {
 }
 
 function Evidence() {
-  const evidence = [
-    'Source code and implementation',
-    'Automated tests and validation',
-    'Retrieval and evaluation results',
-    'Architecture and design decisions',
-    'Failure modes and limitations',
-  ];
-
   return <section className="evidence-section" id="evidence" aria-labelledby="evidence-title">
     <div className="evidence-top">
       <p className="eyebrow">02 / ENGINEERING EVIDENCE</p>
-      <span className="evidence-state"><i /> DOCUMENTED · TESTED · EVALUATED</span>
+      <span className="evidence-state"><i /> CHECKED-IN · PRIOR RUNS · NOT CAPTURED</span>
     </div>
 
     <div className="evidence-main">
@@ -108,11 +100,11 @@ function Evidence() {
 
     <div className="evidence-list">
       {evidence.map((item, index) => (
-        <div className="evidence-row" key={item}>
+        <div className="evidence-row" key={item.label}>
           <span className="evidence-number">0{index + 1}</span>
-          <span className="evidence-name">{item}</span>
-          <span className="evidence-availability">AVAILABLE</span>
-          <span className="evidence-arrow" aria-hidden="true">↗</span>
+          <span className="evidence-name">{item.label} <span>· {item.status}{item.detail ? ` · ${item.detail}` : ''}</span></span>
+          <span className="evidence-availability">{item.status}</span>
+          <span className="evidence-arrow" aria-hidden="true" />
         </div>
       ))}
     </div>
@@ -135,24 +127,24 @@ function About() {
     </div>
     <div className="skills-grid" aria-label="Technical skills">
       <div className="skill-group">
-        <p className="skill-label">SOFTWARE ENGINEERING</p>
-        <p>Python · FastAPI · REST APIs · SQL · SQLite · Git · Docker</p>
+        <p className="skill-label">DEMONSTRATED · SOFTWARE</p>
+        <p>Python · FastAPI · REST APIs · SQLite</p>
       </div>
       <div className="skill-group">
-        <p className="skill-label">AI / MACHINE LEARNING</p>
-        <p>scikit-learn · PyTorch · TensorFlow · NLP · Machine Learning · Data Analysis</p>
+        <p className="skill-label">DEMONSTRATED · AI / ML</p>
+        <p>scikit-learn · Sentence Transformers · semantic retrieval · TF-IDF</p>
       </div>
       <div className="skill-group">
-        <p className="skill-label">GENAI / RETRIEVAL</p>
-        <p>RAG · Embeddings · Semantic Search · BM25 · Hybrid Retrieval · LLM Evaluation · LangChain</p>
+        <p className="skill-label">DEMONSTRATED · GENAI / RETRIEVAL</p>
+        <p>RAG · BM25 · hybrid retrieval · RRF · retrieval evaluation · Streamlit · SQLite</p>
       </div>
       <div className="skill-group">
-        <p className="skill-label">DATA</p>
-        <p>pandas · NumPy · EDA · SQL · Metrics · Evaluation</p>
+        <p className="skill-label">DEMONSTRATED · CYBERSECURITY</p>
+        <p>Vulnerability prioritization · NVD / KEV / EPSS client integration</p>
       </div>
       <div className="skill-group">
-        <p className="skill-label">SECURITY</p>
-        <p>Cybersecurity · Vulnerability Prioritization · Security Engineering</p>
+        <p className="skill-label">OTHER TOOLS / TECHNOLOGIES</p>
+        <p>PyTorch · TensorFlow · NLP · Machine Learning · Data Analysis · pandas · NumPy · EDA · SQL · Git · Docker · LangChain · Cybersecurity · Security Engineering</p>
       </div>
     </div>
   </section>;

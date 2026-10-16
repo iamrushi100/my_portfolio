@@ -13,8 +13,58 @@ test('the homepage keeps the selected projects with explicit statuses', () => {
   }
 });
 
-test('the evidence preview stays labeled as planned artifacts', () => {
-  assert.deepEqual(evidence, ['Test reports', 'Architecture diagrams', 'Evaluation notes', 'API examples', 'Demo videos']);
+test('homepage evidence rows use project-supported states instead of universal availability', () => {
+  const supportedStatuses = new Set(['CHECKED-IN', 'DOCUMENTED PRIOR RUN', 'NOT CAPTURED']);
+  assert.ok(evidence.length > 0);
+  assert.ok(evidence.every(({ status }) => supportedStatuses.has(status)));
+  assert.ok(evidence.some(({ status }) => status === 'CHECKED-IN'));
+  assert.ok(evidence.some(({ status }) => status === 'DOCUMENTED PRIOR RUN'));
+  assert.ok(evidence.some(({ status }) => status === 'NOT CAPTURED'));
+  assert.ok(evidence.every(({ status }) => status !== 'AVAILABLE'));
+  assert.ok(evidence.find(({ label }) => label.includes('Project 1 · automated tests')).detail.includes('62 passed'));
+  assert.ok(evidence.find(({ label }) => label.includes('Project 3 · automated tests')).detail.includes('174 passed'));
+  assert.ok(evidence.find(({ label }) => label.includes('Project 5 · automated tests')).detail.includes('133 passed'));
+});
+
+test('homepage hero states the AI engineering direction without inflated credentials', () => {
+  const page = readFileSync(new URL('./main.jsx', import.meta.url), 'utf8');
+  assert.match(page, /AI ENGINEERING · AI\/ML · SOFTWARE · CYBERSECURITY/);
+  assert.match(page, /AI engineering<br\/>for retrieval,/);
+  assert.match(page, /with cybersecurity work shown through vulnerability prioritization/i);
+  assert.doesNotMatch(page, /AI expert|cybersecurity expert|production experience|enterprise experience/i);
+});
+
+test('homepage project cards qualify the implemented RAG flow and synthetic Project 5 fixture', () => {
+  const p1 = projects.find(({ caseStudyPath }) => caseStudyPath === '/projects/project-1');
+  assert.match(p1.description, /end-to-end RAG through POST \/ask/i);
+  assert.match(p1.description, /hybrid retrieval/i);
+  assert.match(p1.description, /deterministic mock generation by default/i);
+  assert.match(p1.description, /answer quality and grounding are not evaluated/i);
+
+  const p5 = projects.find(({ caseStudyPath }) => caseStudyPath === '/projects/project-5');
+  assert.match(p5.description, /deterministic vulnerability-prioritization heuristic/i);
+  assert.match(p5.description, /NVD, CISA KEV, and FIRST EPSS clients are implemented/i);
+  assert.match(p5.description, /synthetic fixture values, not live-source results/i);
+  assert.doesNotMatch(p5.description, /ML-based prioritization|AI prioritization|live-source evaluation/i);
+});
+
+test('Project 3 has a distinct evaluation visual and verified source wording stays separate from the portfolio', () => {
+  const p1Visual = projects.find(({ caseStudyPath }) => caseStudyPath === '/projects/project-1').visualIndex ?? 0;
+  const p3 = projects.find(({ caseStudyPath }) => caseStudyPath === '/projects/project-3');
+  assert.notEqual(p3.visualIndex, p1Visual);
+  assert.equal(p3.visualIndex, 1);
+
+  const main = readFileSync(new URL('./main.jsx', import.meta.url), 'utf8');
+  assert.match(main, /EVALUATION \/ COMPARISON/);
+  assert.match(main, /TF-IDF/);
+  assert.match(main, /DELTA/);
+  const readme = readFileSync(new URL('../README.md', import.meta.url), 'utf8');
+  assert.match(readme, /verified public project repositories/i);
+  assert.match(readme, /separate from this portfolio website/i);
+  assert.match(readme, /do not imply that local portfolio edits.*have been published/i);
+  assert.doesNotMatch(readme, /public source link remain unavailable|Repository links.*omitted until verified/i);
+  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  assert.match(html, /Engineering Evidence Lab \| AI Engineering & Cybersecurity/);
 });
 
 import { projectFive } from './case-study-data.js';

@@ -19,8 +19,9 @@ The hero contains a lightweight Three.js particle network with a translucent wir
 
 ## Known limitations
 
-- Project 5 now has a local case-study route at `/projects/project-5`; its screenshots, test run output, and public source link remain unavailable unless explicitly marked otherwise on the page.
-- Project statuses are provisional. Repository links, resume, email, and LinkedIn are omitted until verified.
+- The Project 1, Project 3, and Project 5 case studies link to their verified public project repositories. Those repositories are separate from this portfolio website; the links do not imply that local portfolio edits or newer project work have been published there.
+- Raw test output and project screenshots are not captured unless a case study explicitly says otherwise. Test counts shown as documented prior runs are historical evidence, not current test runs.
+- Resume, email, and LinkedIn links remain omitted until verified.
 - Google Fonts are an optional remote enhancement; system fallbacks are provided.
 - `npm test` checks the central project and evidence data; it does not simulate WebGL or browser interactions.
 
