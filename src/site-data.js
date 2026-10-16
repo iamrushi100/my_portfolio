@@ -15,8 +15,8 @@ export const projects = [
   },
   {
     kind: 'AI  /  GENAI  /  EVALUATION',
-    title: 'RAGWatch — RAG Evaluation & Quality Monitor',
-    description: 'A local-first tool for measuring ranked retrieval against labeled questions, comparing saved runs, and inspecting per-question evidence.',
+    title: 'RAGWatch — Retrieval Quality Evaluation',
+    description: 'A local-first tool that measures TF-IDF rankings against labeled questions, compares saved runs, and inspects per-question results. Retrieval-only; it does not generate or judge answers.',
     status: 'Implemented / fictional sample evaluation',
     tags: ['RAG', 'TF-IDF', 'Retrieval metrics', 'Ranking diagnostics', 'Streamlit'],
     mark: 'R∕E',
