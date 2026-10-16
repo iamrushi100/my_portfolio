@@ -34,7 +34,7 @@ function Header() {
   return <header className="site-header">
     <a className="wordmark" href="#top" aria-label="Engineering Evidence Lab, home"><span>R</span><i>/</i>W</a>
     <nav aria-label="Main navigation"><a href="#projects">Work</a><a href="#evidence">Evidence</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
-    <a className="header-link" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">Source <Arrow diagonal /></a>
+    <a className="header-link" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">GitHub profile <Arrow diagonal /></a>
   </header>;
 }
 
@@ -45,7 +45,7 @@ function Hero() {
       <p className="eyebrow"><span className="status-dot" /> AI ENGINEERING · AI/ML · SOFTWARE · CYBERSECURITY</p>
 <h1 id="hero-title">AI engineering<br/>for retrieval,<br/><em>evaluation,</em><br/>and security.</h1>
 <p className="hero-copy">I’m a Computer Engineering graduate building software across retrieval, GenAI, and evaluation, with cybersecurity work shown through vulnerability prioritization.</p>
-      <div className="hero-actions"><a className="button button-primary" href="#projects">Explore projects <Arrow /></a><a className="button button-quiet" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">View source <Arrow diagonal /></a></div>
+      <div className="hero-actions"><a className="button button-primary" href="#projects">Explore projects <Arrow /></a><a className="button button-quiet" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">View GitHub profile <Arrow diagonal /></a></div>
     </div>
     <div className="hero-meta"><span>ENGINEERING EVIDENCE LAB <i>—</i> 01</span><span className="scroll-cue"><span className="scroll-line"/> SCROLL TO EXPLORE</span></div>
     <div className="hero-visual-caption" aria-hidden="true">INTERCONNECTED SYSTEMS<br/><span>CURSOR RESPONSIVE FIELD / 01</span></div>
@@ -78,7 +78,7 @@ function ProjectShowcase({ project, index }) {
 
 function Projects() {
   return <section className="projects-section" id="projects" aria-labelledby="projects-title">
-    <div className="section-intro projects-intro"><p className="eyebrow">01 / SELECTED ENGINEERING WORK</p><h2 id="projects-title">Systems in progress.<br/><em>Evidence in the making.</em></h2><p>Three projects spanning retrieval engineering, applied AI evaluation, and cybersecurity.</p><a className="text-link" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">Browse source on GitHub <Arrow diagonal /></a></div>
+    <div className="section-intro projects-intro"><p className="eyebrow">01 / SELECTED ENGINEERING WORK</p><h2 id="projects-title">Selected engineering work.<br/><em>Evidence in context.</em></h2><p>Three implemented projects across retrieval, applied AI evaluation, and cybersecurity, documented through technical case studies. More work is ongoing.</p><a className="text-link" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">GitHub profile · project repositories <Arrow diagonal /></a></div>
     <div className="showcase-list">{projects.map((project, index) => <ProjectShowcase key={project.title} project={project} index={index} />)}</div>
   </section>;
 }
@@ -110,9 +110,9 @@ function Evidence() {
     </div>
 
     <p className="evidence-copy">
-      Project case studies connect implementation details with tests, evaluation
-      results, architecture decisions, and explicit limitations instead of relying
-      only on screenshots or claims.
+      CHECKED-IN means an artifact is stored in the corresponding project repository;
+      these status rows are informational, not links. Project case studies connect
+      implementation details with tests, results, decisions, and explicit limits.
     </p>
   </section>;
 }
@@ -142,16 +142,20 @@ function About() {
         <p className="skill-label">DEMONSTRATED · CYBERSECURITY</p>
         <p>Vulnerability prioritization · NVD / KEV / EPSS client integration</p>
       </div>
-      <div className="skill-group">
+      <div className="skill-group skill-group-other">
         <p className="skill-label">OTHER TOOLS / TECHNOLOGIES</p>
-        <p>PyTorch · TensorFlow · NLP · Machine Learning · Data Analysis · pandas · NumPy · EDA · SQL · Git · Docker · LangChain · Cybersecurity · Security Engineering</p>
+        <div className="other-skill-groups">
+          <p><span className="skill-sub-label">ML / DATA</span>PyTorch · TensorFlow · NLP · Machine Learning · Data Analysis · pandas · NumPy · EDA</p>
+          <p><span className="skill-sub-label">DEVELOPMENT / FRAMEWORKS</span>SQL · Git · Docker · LangChain</p>
+          <p><span className="skill-sub-label">SECURITY</span>Cybersecurity · Security Engineering</p>
+        </div>
       </div>
     </div>
   </section>;
 }
 
 function Footer() {
-  return <footer id="contact"><div className="footer-main"><div><p className="eyebrow">04 / CONTACT</p><h2>Let’s start with<br/><em>the work itself.</em></h2></div><div className="footer-contact"><p>Source code and current work</p><a className="button button-primary" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">Visit GitHub <Arrow diagonal /></a><div className="reserved"><span>RESERVED</span><p>Resume · Email · LinkedIn<br/><small>Contact links will be added when confirmed.</small></p></div></div></div><div className="footer-bottom"><a className="wordmark" href="#top" aria-label="Back to top"><span>R</span><i>/</i>W</a><span>BUILDING IN PUBLIC, WITH EVIDENCE.</span><a href="#top">BACK TO TOP ↑</a></div></footer>;
+  return <footer id="contact"><div className="footer-main"><div><p className="eyebrow">04 / CONTACT</p><h2>Let’s start with<br/><em>the work itself.</em></h2></div><div className="footer-contact"><p>Project repositories and current work</p><a className="button button-primary" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">View GitHub profile <Arrow diagonal /></a><div className="reserved"><span>RESERVED</span><p>Resume · Email · LinkedIn<br/><small>Contact links will be added when confirmed.</small></p></div></div></div><div className="footer-bottom"><a className="wordmark" href="#top" aria-label="Back to top"><span>R</span><i>/</i>W</a><span>BUILDING IN PUBLIC, WITH EVIDENCE.</span><a href="#top">BACK TO TOP ↑</a></div></footer>;
 }
 
 function App() {

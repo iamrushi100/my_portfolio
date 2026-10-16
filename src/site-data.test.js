@@ -67,6 +67,40 @@ test('Project 3 has a distinct evaluation visual and verified source wording sta
   assert.match(html, /Engineering Evidence Lab \| AI Engineering & Cybersecurity/);
 });
 
+test('homepage copy distinguishes project repositories, retrieval-only evaluation, and ongoing work', () => {
+  const projectThree = projects.find(({ caseStudyPath }) => caseStudyPath === '/projects/project-3');
+  assert.equal(projectThree.title, 'RAGWatch — Retrieval Quality Evaluation');
+  assert.match(projectThree.description, /TF-IDF rankings against labeled questions/i);
+  assert.match(projectThree.description, /retrieval-only.*does not generate or judge answers/i);
+  assert.doesNotMatch(projectThree.description, /LLM evaluation|citation evaluation|production monitoring|drift detection/i);
+
+  const main = readFileSync(new URL('./main.jsx', import.meta.url), 'utf8');
+  assert.match(main, /Selected engineering work\./);
+  assert.match(main, /Evidence in context\./);
+  assert.match(main, /More work is ongoing/);
+  assert.doesNotMatch(main, /Systems in progress|Evidence in the making/);
+  assert.match(main, /GitHub profile/);
+  assert.doesNotMatch(main, /View source|Browse source on GitHub|>Source</);
+  assert.match(main, /corresponding project repository/);
+  assert.match(main, /informational, not links/);
+  assert.match(main, /View GitHub profile/);
+});
+
+test('homepage case-study links and skills remain readable and differentiated', () => {
+  const main = readFileSync(new URL('./main.jsx', import.meta.url), 'utf8');
+  const styles = readFileSync(new URL('./style.css', import.meta.url), 'utf8');
+  assert.match(main, /OPEN CASE STUDY/);
+  assert.match(styles, /\.case-note\{[^}]*font:10px/);
+  assert.match(styles, /\.case-note\{[^}]*color:#9bcfc5/);
+  assert.match(styles, /a:focus-visible\{outline:2px solid var\(--teal\)/);
+  assert.match(styles, /@media\(max-width:760px\) and \(min-width:651px\)/);
+  assert.match(main, /DEMONSTRATED · AI \/ ML/);
+  assert.match(main, /OTHER TOOLS \/ TECHNOLOGIES/);
+  for (const technology of ['PyTorch', 'TensorFlow', 'NLP', 'Machine Learning', 'Data Analysis', 'pandas', 'NumPy', 'EDA', 'SQL', 'Git', 'Docker', 'LangChain', 'Cybersecurity', 'Security Engineering']) {
+    assert.ok(main.includes(technology), `missing broader technology: ${technology}`);
+  }
+});
+
 import { projectFive } from './case-study-data.js';
 
 test('Project 5 portfolio content uses verified score weights and synthetic evaluation labels', () => {
