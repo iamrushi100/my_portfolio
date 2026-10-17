@@ -1,12 +1,12 @@
 export const projectThree = {
   id: 'project-3',
   name: 'RAGWatch',
-  title: 'RAGWatch — RAG Evaluation & Quality Monitor',
+  title: 'RAGWatch — Retrieval Quality Evaluation',
   status: 'Local-first retrieval evaluation tool',
   description: 'Measures ranked retrieval against labeled questions, compares saved runs, and exposes per-question evidence behind score changes.',
   overviewSummary: 'TF-IDF baseline · six-question fictional fixture · controlled/artificial experiment reverses the complete baseline rankings to check that the metrics detect degraded ordering.',
   tags: ['Python', 'scikit-learn', 'TF-IDF', 'pytest', 'Streamlit', 'SQLite'],
-  caseStudyPath: '/projects/project-3',
+  caseStudyPath: '/projects/ragwatch',
   repositoryUrl: 'https://github.com/iamrushi100/RAGWatch',
   sourceStatus: 'Public GitHub repository',
   requiredSections: [

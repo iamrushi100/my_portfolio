@@ -1,14 +1,15 @@
 import React from 'react';
 import { projectThree as project } from './project-three-data.js';
 import './project-three.css';
+import DemoVideoSlot from './DemoVideoSlot.jsx';
 
 function P3Header() {
-  return <header className="p3-header"><a href="/#top" className="p3-brand" aria-label="Engineering Evidence Lab, home"><b>R</b>/W <span>ENGINEERING EVIDENCE LAB</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#regression">Experiment</a><a href="#scope">Scope</a></nav></header>;
+  return <header className="p3-header"><a href="/#top" className="p3-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#regression">Experiment</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/#contact">Resume</a></nav></header>;
 }
 
 function CaseStudyHero() {
   return <section className="p3-hero" aria-labelledby="p3-title"><div className="p3-hero-copy">
-    <p className="p3-eyebrow"><span/> RETRIEVAL QUALITY / CASE 03</p>
+    <p className="p3-eyebrow"><span/> RETRIEVAL QUALITY / RUSHIKESH WANI</p>
     <h1 id="p3-title">{project.title}</h1>
     <p className="p3-lede">{project.description} The system evaluates retrieval; it does not generate or judge answers.</p>
     <p className="p3-status"><span>STATUS</span>{project.status}</p>
@@ -47,6 +48,8 @@ function ProjectThreeCaseStudy() {
   const q = project.regression.questionExample;
   return <div className="p3-case"><a className="p3-skip" href="#p3-main">Skip to case study</a><P3Header/><main id="p3-main">
     <CaseStudyHero/>
+    <DemoVideoSlot title={project.title} />
+    <section className="p3-fast-scan" aria-label="Project summary"><article><span>PROBLEM</span><p>Measure whether a retrieval ranking change improves or degrades relevant evidence order.</p></article><article><span>WHAT I BUILT</span><p>A TF-IDF baseline, retrieval metrics, CLI reports, SQLite run history, and a read-only Streamlit dashboard.</p></article><article><span>KEY RESULT</span><p>MRR fell from 0.833 to 0.087 when all rankings were reversed in a six-question fictional fixture.</p></article></section>
 
     <Section id="problem" number="01" title="Measure retrieval before evaluating answers"><p>Retrieval changes need a repeatable way to check whether labeled evidence appears near the top of a ranking. RAGWatch isolates that question: validate a small dataset, rank chunks for each question, calculate graded retrieval metrics, and inspect the per-question results.</p><p>It is a standalone, local-first evaluation tool. It evaluates retrieval quality only; it does not generate answers, decide whether an answer is correct, or use an LLM judge.</p><div className="p3-callout"><b>RESULT SUMMARY</b><p>{project.overviewSummary}</p></div></Section>
 
@@ -69,7 +72,7 @@ function ProjectThreeCaseStudy() {
     <Section id="next-steps" number="10" title="Next engineering steps"><ol className="p3-next-list">{project.nextSteps.map((item, index) => <li key={item}><span>0{index + 1}</span><p>{item}</p></li>)}</ol></Section>
 
     <Section id="links" number="11" title="Source & artifacts"><p>{project.sourceStatus}. The dataset, evaluation, and regression report are identified by repository-relative paths above.</p><div className="p3-link-row">{project.repositoryUrl && <a href={project.repositoryUrl} target="_blank" rel="noreferrer">Open GitHub repository <span aria-hidden="true">↗</span></a>}<a href="/#projects">Return to selected work <span aria-hidden="true">←</span></a><span>RAGWatch · retrieval evaluation only</span></div></Section>
-  </main><footer className="p3-footer"><a href="/#projects">← Back to selected work</a><span>RAGWATCH · PROJECT 03</span><a href="#p3-main">BACK TO TOP ↑</a></footer></div>;
+  </main><footer className="p3-footer"><a href="/#projects">← Back to selected work</a><span>RUSHIKESH WANI · RAGWATCH</span><a href="/#contact">CONTACT / RESUME</a><a href="#p3-main">BACK TO TOP ↑</a></footer></div>;
 }
 
 export default ProjectThreeCaseStudy;

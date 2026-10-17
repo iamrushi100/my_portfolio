@@ -1,6 +1,7 @@
 import React from 'react';
 import { projectFive as project } from './case-study-data.js';
 import './case-study.css';
+import DemoVideoSlot from './DemoVideoSlot.jsx';
 
 const flow = [
   ['01', 'Source connectors', 'NVD CVEs · CISA KEV snapshots · FIRST EPSS observations'],
@@ -16,7 +17,7 @@ const flow = [
 function CaseStudyHero() {
   return <section className="p5-hero" aria-labelledby="p5-title">
     <div className="p5-hero-copy">
-      <p className="p5-eyebrow"><span /> SECURITY INTELLIGENCE / CASE 05</p>
+      <p className="p5-eyebrow"><span /> SECURITY INTELLIGENCE / RUSHIKESH WANI</p>
       <h1 id="p5-title">{project.title}</h1>
       <p className="p5-lede">{project.description}</p>
       <p className="p5-source-status">{project.supportingCapability}</p>
@@ -66,13 +67,15 @@ function Section({ id, number, title, children, className = '' }) {
 }
 
 function P5Header() {
-  return <header className="p5-header"><a href="/#top" className="p5-brand" aria-label="Engineering Evidence Lab, home"><b>R</b>/W <span>ENGINEERING EVIDENCE LAB</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a></nav></header>;
+  return <header className="p5-header"><a href="/#top" className="p5-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/#contact">Resume</a></nav></header>;
 }
 
 function ProjectFiveCaseStudy() {
   const e = project.syntheticEvaluation;
   return <div className="p5-case"><a className="p5-skip" href="#p5-main">Skip to case study</a><P5Header/><main id="p5-main">
     <CaseStudyHero />
+    <DemoVideoSlot title={project.title} />
+    <section className="p5-fast-scan" aria-label="Project summary"><article><span>PROBLEM</span><p>CVSS alone does not account for the context of a specific asset or current exploitation evidence.</p></article><article><span>WHAT I BUILT</span><p>A deterministic weighted heuristic joining NVD, KEV, EPSS, synthetic asset context, and human review notes.</p></article><article><span>KEY RESULT</span><p>Four of 36 synthetic vulnerability–asset pairs were scorable; contextual ordering differed from CVSS-only ordering.</p></article></section>
     <Section id="problem" number="01" title="Prioritization needs context"><p>{project.problem}</p><p>The system organizes evidence for a human reviewer. It does not scan systems, execute exploits, or decide remediation.</p><div className="p5-callout"><b>SYNTHETIC RESULT SUMMARY</b><p>{project.syntheticEvaluation.pairs} vulnerability–asset pairs · {project.syntheticEvaluation.scorablePairs} comparable pairs · {project.syntheticEvaluation.scorablePercent}% contextual-score coverage. Formula behavior on fictional fixture data only.</p></div></Section>
 
     <Section id="architecture" number="02" title="A traceable evidence path"><p>Source connectors are separate from normalization and persistence. Assessments read stored records, match candidate products, and calculate a deterministic score locally; FastAPI and Streamlit expose findings and review state. Fetching is explicit, not continuous. {project.storage}</p><ArchitectureFlow/><p className="p5-note">NVD, CISA KEV, and FIRST EPSS fetch clients are implemented. The displayed demo and evaluation use fictional fixture values; they were not produced by live external-source fetches. Stored NVD applicability is limited to the matching rules described below.</p></Section>
@@ -97,7 +100,7 @@ function ProjectFiveCaseStudy() {
     <ScopeBlock />
     <Section id="next-steps" number="09" title="Next engineering steps"><ol className="p5-review-flow">{project.nextSteps.map((item, index) => <li key={item}><span>0{index + 1}</span><p>{item}</p></li>)}</ol><p className="p5-note">The documented ML feasibility review defers training: the available data lacks authentic historical source snapshots and labels for a leakage-aware time split.</p></Section>
     <Section id="links" number="10" title="Source & artifacts"><p>The public source repository is linked below. Project materials identify the documented architecture and synthetic evaluation; no live endpoint is provided. Evaluation artifacts are identified by repository-relative path where available.</p><div className="p5-link-row">{project.repositoryUrl && <a href={project.repositoryUrl} target="_blank" rel="noreferrer">Open GitHub repository <span aria-hidden="true">↗</span></a>}<a href="/#projects">Return to selected work <span aria-hidden="true">←</span></a><span>{project.sourceStatus}</span></div><div className="p5-artifacts">{project.artifacts.map(item => <article key={item.name}><h3>{item.name}</h3><p>{item.status}</p></article>)}</div></Section>
-  </main><footer className="p5-footer"><a href="/#projects">← Back to selected work</a><span>PROJECT 05 · ENGINEERING EVIDENCE LAB</span><a href="#p5-main">BACK TO TOP ↑</a></footer></div>;
+  </main><footer className="p5-footer"><a href="/#projects">← Back to selected work</a><span>RUSHIKESH WANI · VULNERABILITY PRIORITIZATION</span><a href="/#contact">CONTACT / RESUME</a><a href="#p5-main">BACK TO TOP ↑</a></footer></div>;
 }
 
 export default ProjectFiveCaseStudy;

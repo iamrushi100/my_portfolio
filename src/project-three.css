@@ -11,3 +11,29 @@
 @media(max-width:390px){.p3-header nav{gap:9px}.p3-header nav a{font-size:7px}.p3-diagnostic-grid,.p3-evidence-grid,.p3-decision-grid{grid-template-columns:1fr}.p3-hero h1{font-size:36px}.p3-hero-visual{height:220px}}
 @media(prefers-reduced-motion:reduce){.p3-case *,.p3-case *::before,.p3-case *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 .p3-metric-banner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 12px;margin-top:18px;border:1px solid rgba(212,185,137,.35);background:rgba(184,153,105,.07);color:#e1c99e;font:8px var(--p3-mono);letter-spacing:.04em}.p3-metric-banner span{color:#c1b49b}.p3-metric-grid{margin-top:11px}
+
+
+/* Portfolio V2 · case-study fast-scan layer */
+.p1-fast-scan,.p3-fast-scan,.p5-fast-scan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:30px 9%;border-bottom:1px solid rgba(191,218,211,.16);background:rgba(16,28,34,.62)}
+.p1-fast-scan article,.p3-fast-scan article,.p5-fast-scan article{padding:0 24px;border-left:1px solid rgba(191,218,211,.16)}
+.p1-fast-scan article:first-child,.p3-fast-scan article:first-child,.p5-fast-scan article:first-child{padding-left:0;border-left:0}
+.p1-fast-scan span,.p3-fast-scan span,.p5-fast-scan span{font:9px 'DM Mono',monospace;letter-spacing:.1em;color:#9bcfc5}
+.p1-fast-scan p,.p3-fast-scan p,.p5-fast-scan p{margin:10px 0 0;color:#c3cfcb;font-size:13px;line-height:1.7}
+.p1-header nav,.p3-header nav,.p5-header nav{gap:18px}
+.p1-header nav a,.p3-header nav a,.p5-header nav a{white-space:nowrap;font-size:9px}
+.p1-footer,.p3-footer,.p5-footer{flex-wrap:wrap;gap:18px}
+@media(max-width:800px){.p1-fast-scan,.p3-fast-scan,.p5-fast-scan{grid-template-columns:1fr;gap:18px;padding:26px 7%}.p1-fast-scan article,.p3-fast-scan article,.p5-fast-scan article{padding:14px 0 0;border-left:0;border-top:1px solid rgba(191,218,211,.16)}.p1-fast-scan article:first-child,.p3-fast-scan article:first-child,.p5-fast-scan article:first-child{padding-top:0;border-top:0}.p1-header,.p3-header,.p5-header{height:auto;min-height:76px;padding:16px 6%;flex-wrap:wrap;gap:14px}.p1-header nav,.p3-header nav,.p5-header nav{width:100%;flex-wrap:wrap;gap:12px 18px}}
+
+/* Portfolio V2 · honest video slot and fallback */
+.demo-video-section{padding:42px 9%;border-bottom:1px solid rgba(191,218,211,.16);background:linear-gradient(120deg,rgba(16,28,34,.72),rgba(9,17,22,.35))}
+.demo-video-heading{display:grid;grid-template-columns:minmax(160px,.42fr) minmax(0,1fr);column-gap:28px;align-items:start;max-width:1050px;margin:0 auto 22px}
+.demo-video-eyebrow{grid-column:1;color:#9bcfc5;font:9px 'DM Mono',monospace;letter-spacing:.1em;margin:8px 0}
+.demo-video-heading h2{grid-column:2;font:500 clamp(25px,3.2vw,38px)/1.1 'Manrope','DM Sans',sans-serif;letter-spacing:-.045em;margin:0}
+.demo-video-heading>p:last-child{grid-column:2;color:#aebfba;font-size:13px;line-height:1.7;margin:12px 0 0}
+.demo-video-pending,.demo-video-frame{max-width:1050px;margin:0 auto;border:1px solid rgba(191,218,211,.2);background:#0a1117;min-height:170px}
+.demo-video-pending{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:28px 30px;background:radial-gradient(ellipse at 90% 50%,rgba(68,137,130,.12),transparent 50%),#0a1117}
+.demo-video-status{font:9px 'DM Mono',monospace;letter-spacing:.11em;color:#9bcfc5;border:1px solid rgba(155,207,197,.32);padding:8px 11px}
+.demo-video-pending p{max-width:650px;color:#aebfba;line-height:1.75;font-size:13px;margin:16px 0 0}
+.demo-video-frame video{display:block;width:100%;height:auto;max-height:590px;background:#05090c}
+.demo-transcript-link{display:inline-block;margin:12px 16px;color:#9bcfc5;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:800px){.demo-video-section{padding:28px 7%}.demo-video-heading{grid-template-columns:1fr;gap:8px}.demo-video-eyebrow,.demo-video-heading h2,.demo-video-heading>p:last-child{grid-column:1}.demo-video-pending{padding:22px 20px;min-height:150px}}

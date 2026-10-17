@@ -113,3 +113,33 @@
 .project-showcase:hover .risk-vector { opacity: .9; }
 @keyframes technical-flow { to { stroke-dashoffset: -112; } }
 @keyframes technical-node { from { opacity: .72; transform: scale(.92); } to { opacity: 1; transform: scale(1.08); } }
+
+
+/* Portfolio V2 · recruiter essentials and evidence interaction */
+.header-actions{display:flex;align-items:center;gap:22px}
+.header-resume{display:inline-flex;align-items:center;gap:8px;color:var(--bg);background:var(--teal);padding:11px 15px;font:10px var(--mono);letter-spacing:.06em;transition:background .2s,transform .2s}
+.header-resume:hover{background:#c2e3dc;transform:translateY(-1px)}
+.header-resume .arrow{margin:0}
+.hero .eyebrow{max-width:650px;line-height:1.8}
+.footer-owner{font:500 clamp(24px,3vw,38px)/1.1 var(--display);letter-spacing:-.04em;color:var(--text);margin:-12px 0 18px}
+.footer-owner-small{color:var(--text);font:10px var(--mono);letter-spacing:.04em}
+.contact-links{margin-top:26px;border-top:1px solid var(--line);padding-top:18px;max-width:340px}
+.contact-links>span{font:9px var(--mono);letter-spacing:.1em;color:var(--teal)}
+.contact-links p{color:var(--muted);font-size:12px;line-height:1.7;margin:9px 0 0}
+.contact-links .resume-missing{font-size:11px;color:var(--dim)}
+.evidence-row-link{cursor:pointer;transition:background .2s,color .2s}
+.evidence-row-link:hover{background:rgba(155,207,197,.055);color:var(--teal)}
+.evidence-row-link:hover .evidence-arrow{transform:translate(3px,-3px)}
+.evidence-arrow{transition:transform .2s}
+.experience-section{padding:130px 8.3%;display:grid;grid-template-columns:100px minmax(0,1fr);gap:60px;border-bottom:1px solid var(--line)}
+.experience-main{min-width:0}
+.experience-main h2{font:500 clamp(38px,5vw,66px)/1.04 var(--display);letter-spacing:-.065em;margin:0 0 45px}
+.experience-main h2 em{font-family:Georgia,serif;font-weight:400;color:var(--teal)}
+.experience-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.experience-entry{min-width:0;border-top:1px solid var(--line);padding:20px 18px 18px 0}
+.experience-kicker{font:9px var(--mono);letter-spacing:.06em;color:var(--teal)}
+.experience-entry h3{font:500 20px/1.25 var(--display);letter-spacing:-.03em;margin:15px 0 10px}
+.experience-entry p{color:var(--muted);font-size:13px;line-height:1.8;margin:0}
+@media(max-width:1000px){.site-header{padding:0 5%;}.site-header nav{gap:18px}.header-actions{gap:12px}.experience-section{padding:100px 6%;grid-template-columns:65px minmax(0,1fr);gap:32px}.experience-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.experience-education{grid-column:1/-1}}
+@media(max-width:760px){.site-header{height:auto;min-height:74px;flex-wrap:wrap;gap:12px;padding:16px 5%}.site-header nav{order:3;width:100%;justify-content:space-between;gap:12px}.site-header nav a{font-size:11px}.header-actions{margin-left:auto}.header-link{display:none}.header-resume{padding:10px 12px}.experience-section{padding:76px 6%;grid-template-columns:1fr;gap:18px}.experience-section .about-serial{display:none}.experience-main h2{margin-bottom:28px}.experience-grid{grid-template-columns:1fr}.experience-education{grid-column:auto}}
+@media(max-width:390px){.site-header nav{gap:7px}.site-header nav a{font-size:10px}.header-resume{padding:9px 10px;font-size:9px}}

@@ -2,11 +2,12 @@ import React from 'react';
 import { projectOne as project } from './project-one-data.js';
 import './project-one.css';
 import { CaseStudySection } from './CaseStudyLayout.jsx';
+import DemoVideoSlot from './DemoVideoSlot.jsx';
 
 function CaseStudyHero() {
   return <section className="p1-hero" aria-labelledby="p1-title">
     <div className="p1-hero-copy">
-      <p className="p1-eyebrow"><span /> RETRIEVAL ENGINEERING / CASE 01</p>
+      <p className="p1-eyebrow"><span /> RETRIEVAL ENGINEERING / RUSHIKESH WANI</p>
       <h1 id="p1-title">{project.title}</h1>
       <p className="p1-lede">{project.description}</p>
       <p className="p1-status"><span>STATUS</span>{project.status}</p>
@@ -22,7 +23,7 @@ function CaseStudyHero() {
 }
 
 function P1Header() {
-  return <header className="p1-header"><a href="/#top" className="p1-brand" aria-label="Engineering Evidence Lab, home"><b>R</b>/W <span>ENGINEERING EVIDENCE LAB</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a></nav></header>;
+  return <header className="p1-header"><a href="/#top" className="p1-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/#contact">Resume</a></nav></header>;
 }
 
 function Pipeline({ items, label }) {
@@ -76,6 +77,8 @@ function ProjectOneCaseStudy() {
   const methods = evaluation.aggregates.map((method, i) => ({ ...method, index: `0${i + 1}` }));
   return <div className="p1-case"><a className="p1-skip" href="#p1-main">Skip to case study</a><P1Header/><main id="p1-main">
     <CaseStudyHero/>
+    <DemoVideoSlot title={project.title} />
+    <section className="p1-fast-scan" aria-label="Project summary"><article><span>PROBLEM</span><p>Find the relevant passage in uploaded PDF, DOCX, and TXT files.</p></article><article><span>WHAT I BUILT</span><p>FastAPI ingestion, semantic and BM25 retrieval, RRF rank fusion, evaluation, and a separate /ask route.</p></article><article><span>KEY RESULT</span><p>Recall@5 and MRR tie at 1.0 for semantic and hybrid on the 30-question fixture; no hybrid advantage was measured.</p></article></section>
 
     <CaseStudySection id="problem" number="01" title="Find the source passage before answering"><p>The system turns uploaded PDF, DOCX, and TXT files into searchable passages with document and page metadata. A single retrieval signal can miss evidence in different ways: keyword search depends on term overlap, while semantic similarity can miss an exact identifier or error code. Embeddings help find passages phrased differently from a query; BM25 adds a lexical signal for exact technical terms. The system compares both paths and fuses their rankings.</p><p>A separate <code>/ask</code> route connects hybrid retrieval to a generator, using a mock by default. The evaluation described here measures passage retrieval only; it does not score generated answers or establish answer correctness.</p><div className="p1-decision-callout"><b>FIXTURE RESULT</b><p>The documented fixture shows no measured hybrid advantage over semantic retrieval; both tie across the displayed metrics.</p></div></CaseStudySection>
 
@@ -99,7 +102,7 @@ function ProjectOneCaseStudy() {
 
     <CaseStudySection id="evaluation" number="11" title="Fixture results compare the three retrieval paths"><div className="p1-results-banner"><b>{evaluation.label}</b><span>Saved report · not a real-world or production result</span></div><p>These are the answerable-only macro averages in <code>{evaluation.resultPath}</code>, across {evaluation.answerableCases} questions. All methods used the same inputs, candidate depth, and metric cutoffs.</p><MetricTable/><p className="p1-note">{evaluation.interpretation} {evaluation.caveat}</p></CaseStudySection>
 
-    <CaseStudySection id="evidence" number="12" title="Tests and saved artifacts answer different questions"><div className="p1-evidence-metrics"><EvidenceMetric value={project.evidence.documentedTestRun} label="DOCUMENTED PRIOR RUN" detail={`Public README at 770b1f5 · ${project.evidence.testModules} test modules`}/><EvidenceMetric value="3" label="RETRIEVAL METHODS" detail="Semantic · BM25 · Hybrid"/><EvidenceMetric value="2" label="SAVED RESULT FORMATS" detail="Aggregate JSON · per-question CSV"/></div><div className="p1-artifact-list">{project.evidence.artifacts.map(item => <article key={item.path}><span>{item.status}</span><h3>{item.name}</h3><code>{item.path}</code></article>)}</div><p className="p1-note"><strong>Test coverage:</strong> {project.evidence.testCoverage.join('; ')}. These automated tests validate defined behavior; the saved experiment measures retrieval rankings on the authored fixture. {project.evidence.testStatus}</p></CaseStudySection>
+    <CaseStudySection id="evidence" number="12" title="Tests and saved artifacts answer different questions"><div className="p1-evidence-metrics"><EvidenceMetric value={project.evidence.documentedTestRun} label="DOCUMENTED PRIOR RUN" detail={`Documented prior repository run · ${project.evidence.testModules} test modules`}/><EvidenceMetric value="3" label="RETRIEVAL METHODS" detail="Semantic · BM25 · Hybrid"/><EvidenceMetric value="2" label="SAVED RESULT FORMATS" detail="Aggregate JSON · per-question CSV"/></div><div className="p1-artifact-list">{project.evidence.artifacts.map(item => <article key={item.path}><span>{item.status}</span><h3>{item.name}</h3><code>{item.path}</code></article>)}</div><p className="p1-note"><strong>Test coverage:</strong> {project.evidence.testCoverage.join('; ')}. These automated tests validate defined behavior; the saved experiment measures retrieval rankings on the authored fixture. {project.evidence.testStatus}</p></CaseStudySection>
 
     <CaseStudySection id="decisions" number="13" title="Decisions favor inspectability at local scale"><div className="p1-decision-grid">{project.decisions.map((decision, i) => <article key={decision.title}><span>0{i + 1} / TRADE-OFF</span><h3>{decision.title}</h3><p>{decision.detail}</p></article>)}</div></CaseStudySection>
 
@@ -108,7 +111,7 @@ function ProjectOneCaseStudy() {
     <CaseStudySection id="next-steps" number="15" title="Next engineering steps"><ol className="p1-next-steps">{project.nextSteps.map((item, i) => <li key={item}><span>0{i + 1}</span><p>{item}</p></li>)}</ol></CaseStudySection>
 
     <CaseStudySection id="links" number="16" title="Source & artifacts"><p>{project.sourceStatus}</p><div className="p1-link-row">{project.repositoryUrl && <a href={project.repositoryUrl} target="_blank" rel="noreferrer">Open GitHub repository <span aria-hidden="true">↗</span></a>}<a href="/#projects">Return to selected work <span aria-hidden="true">←</span></a><span>Evaluation artifacts are identified above by repository-relative path.</span></div></CaseStudySection>
-  </main><footer className="p1-footer"><a href="/#projects">← Back to selected work</a><span>PROJECT 01 · ENGINEERING EVIDENCE LAB</span><a href="#p1-main">BACK TO TOP ↑</a></footer></div>;
+  </main><footer className="p1-footer"><a href="/#projects">← Back to selected work</a><span>RUSHIKESH WANI · DOCUMENT RETRIEVAL</span><a href="/#contact">CONTACT / RESUME</a><a href="#p1-main">BACK TO TOP ↑</a></footer></div>;
 }
 
 export default ProjectOneCaseStudy;

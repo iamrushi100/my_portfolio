@@ -5,7 +5,7 @@ export const projectFive = {
   description: 'A deterministic weighted heuristic combines vulnerability evidence with synthetic asset context to produce an inspectable review order.',
   supportingCapability: 'Optional Groq explanations support review separately; no ML model performs the prioritization.',
   tags: ['Python', 'FastAPI', 'Streamlit', 'SQLite'],
-  caseStudyPath: '/projects/project-5',
+  caseStudyPath: '/projects/vuln-prioritization',
   repositoryUrl: 'https://github.com/iamrushi100/ai-security-vulnerability-prioritizer',
   sourceStatus: 'Public GitHub repository',
   requiredSections: ['problem', 'architecture', 'evidence', 'scoring', 'evaluation', 'review', 'decisions', 'scope', 'next-steps', 'links'],

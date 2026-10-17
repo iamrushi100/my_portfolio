@@ -32,9 +32,9 @@ function Arrow({ diagonal = false }) { return <span aria-hidden="true" className
 
 function Header() {
   return <header className="site-header">
-    <a className="wordmark" href="#top" aria-label="Engineering Evidence Lab, home"><span>R</span><i>/</i>W</a>
-    <nav aria-label="Main navigation"><a href="#projects">Work</a><a href="#evidence">Evidence</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
-    <a className="header-link" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">GitHub profile <Arrow diagonal /></a>
+    <a className="wordmark" href="#top" aria-label="Rushikesh Wani, home"><span>R</span><i>/</i>W</a>
+    <nav aria-label="Main navigation"><a href="#projects">Work</a><a href="#evidence">Evidence</a><a href="#experience">Experience</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+    <div className="header-actions"><a className="header-link" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">GitHub profile <Arrow diagonal /></a><a className="header-resume" href="#contact">Resume <Arrow diagonal /></a></div>
   </header>;
 }
 
@@ -42,12 +42,12 @@ function Hero() {
   return <section className="hero" id="top" aria-labelledby="hero-title">
     <div className="hero-scene"><DeferredIntelligenceField /></div>
     <div className="hero-content">
-      <p className="eyebrow"><span className="status-dot" /> AI ENGINEERING · AI/ML · SOFTWARE · CYBERSECURITY</p>
+      <p className="eyebrow"><span className="status-dot" /> RUSHIKESH WANI · COMPUTER ENGINEER · CYBERSECURITY HONORS</p>
 <h1 id="hero-title">AI engineering<br/>for retrieval,<br/><em>evaluation,</em><br/>and security.</h1>
-<p className="hero-copy">I’m a Computer Engineering graduate building software across retrieval, GenAI, and evaluation, with cybersecurity work shown through vulnerability prioritization.</p>
+<p className="hero-copy">I build and evaluate retrieval and GenAI systems, with cybersecurity demonstrated through vulnerability-prioritization work.</p>
       <div className="hero-actions"><a className="button button-primary" href="#projects">Explore projects <Arrow /></a><a className="button button-quiet" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">View GitHub profile <Arrow diagonal /></a></div>
     </div>
-    <div className="hero-meta"><span>ENGINEERING EVIDENCE LAB <i>—</i> 01</span><span className="scroll-cue"><span className="scroll-line"/> SCROLL TO EXPLORE</span></div>
+    <div className="hero-meta"><span>RUSHIKESH WANI <i>—</i> AI / GENAI ENGINEERING</span><span className="scroll-cue"><span className="scroll-line"/> SCROLL TO EXPLORE</span></div>
     <div className="hero-visual-caption" aria-hidden="true">INTERCONNECTED SYSTEMS<br/><span>CURSOR RESPONSIVE FIELD / 01</span></div>
   </section>;
 }
@@ -65,12 +65,12 @@ function ProjectVisual({ index }) {
 function ProjectShowcase({ project, index }) {
   return <article className={`project-showcase showcase-${index + 1}`}>
     <div className="project-copy">
-      <div className="showcase-index"><span>0{index + 1}</span><span>{project.kind}</span></div>
+      <div className="showcase-index"><span>{project.shortTitle}</span><span>{project.kind}</span></div>
       <p className="project-status"><i />{project.status}</p>
       <h3>{project.title}</h3>
       <p className="project-description">{project.description}</p>
       <div className="tag-list">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-      {project.caseStudyPath ? <a className="case-note case-link" href={project.caseStudyPath}>OPEN CASE STUDY <span aria-hidden="true">↗</span></a> : <span className="case-note">CASE STUDY IN PREPARATION</span>}
+      {project.caseStudyPath ? <a className="case-note case-link" href={project.caseStudyPath}>VIEW CASE STUDY <span aria-hidden="true">↗</span></a> : <span className="case-note">CASE STUDY IN PREPARATION</span>}
     </div>
     <ProjectVisual index={project.visualIndex ?? (index % 3)} />
   </article>;
@@ -100,7 +100,12 @@ function Evidence() {
 
     <div className="evidence-list">
       {evidence.map((item, index) => (
-        <div className="evidence-row" key={item.label}>
+        item.url ? <a className="evidence-row evidence-row-link" key={item.label} href={item.url} target="_blank" rel="noreferrer">
+          <span className="evidence-number">0{index + 1}</span>
+          <span className="evidence-name">{item.label} <span>· {item.status}{item.detail ? ` · ${item.detail}` : ''}</span></span>
+          <span className="evidence-availability">{item.status}</span>
+          <span className="evidence-arrow" aria-hidden="true">↗</span>
+        </a> : <div className="evidence-row" key={item.label}>
           <span className="evidence-number">0{index + 1}</span>
           <span className="evidence-name">{item.label} <span>· {item.status}{item.detail ? ` · ${item.detail}` : ''}</span></span>
           <span className="evidence-availability">{item.status}</span>
@@ -110,16 +115,28 @@ function Evidence() {
     </div>
 
     <p className="evidence-copy">
-      CHECKED-IN means an artifact is stored in the corresponding project repository;
-      these status rows are informational, not links. Project case studies connect
+      CHECKED-IN means an artifact is stored in the corresponding project repository.
+      Rows link directly to repository artifacts only when the path has been verified. Project case studies connect
       implementation details with tests, results, decisions, and explicit limits.
     </p>
   </section>;
 }
 
 function About() {
-  return <section className="about-section" id="about" aria-labelledby="about-title">
-    <div className="about-serial">03<br/><span>ABOUT</span></div>
+  return <><section className="experience-section" id="experience" aria-labelledby="experience-title">
+    <div className="about-serial">03<br/><span>EXPERIENCE</span></div>
+    <div className="experience-main">
+      <p className="eyebrow">EXPERIENCE &amp; EDUCATION</p>
+      <h2 id="experience-title">Learning by <em>building.</em></h2>
+      <div className="experience-grid">
+        <article className="experience-entry"><span className="experience-kicker">INTERNSHIP / PROJECT WORK</span><h3>CodeFlow Studios</h3><p>Backend and chatbot development work during internship.</p></article>
+        <article className="experience-entry"><span className="experience-kicker">INTERNSHIP / PROJECT WORK</span><h3>CodSoft</h3><p>Project-based software development internship work.</p></article>
+        <article className="experience-entry experience-education"><span className="experience-kicker">EDUCATION · 2026</span><h3>B.E. Computer Engineering</h3><p>Savitribai Phule Pune University (SPPU) · Honors in Cybersecurity</p></article>
+      </div>
+    </div>
+  </section>
+  <section className="about-section" id="about" aria-labelledby="about-title">
+    <div className="about-serial">04<br/><span>ABOUT</span></div>
     <div className="about-main"><p className="eyebrow">SOFTWARE · AI · DATA · SECURITY</p><h2 id="about-title">Building with curiosity.<br/><em>Engineering with evidence.</em></h2></div>
     <div className="about-detail">
       <p>I’m a Computer Engineering graduate with Cybersecurity Honors, building practical software across backend engineering, machine learning, GenAI, data, and intelligent applications.</p>
@@ -151,21 +168,36 @@ function About() {
         </div>
       </div>
     </div>
-  </section>;
+  </section></>;
 }
 
 function Footer() {
-  return <footer id="contact"><div className="footer-main"><div><p className="eyebrow">04 / CONTACT</p><h2>Let’s start with<br/><em>the work itself.</em></h2></div><div className="footer-contact"><p>Project repositories and current work</p><a className="button button-primary" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">View GitHub profile <Arrow diagonal /></a><div className="reserved"><span>RESERVED</span><p>Resume · Email · LinkedIn<br/><small>Contact links will be added when confirmed.</small></p></div></div></div><div className="footer-bottom"><a className="wordmark" href="#top" aria-label="Back to top"><span>R</span><i>/</i>W</a><span>BUILDING IN PUBLIC, WITH EVIDENCE.</span><a href="#top">BACK TO TOP ↑</a></div></footer>;
+  return <footer id="contact"><div className="footer-main"><div><p className="eyebrow">05 / CONTACT</p><p className="footer-owner">Rushikesh Wani</p><h2>Let’s start with<br/><em>the work itself.</em></h2></div><div className="footer-contact"><p>Project repositories and current work</p><a className="button button-primary" href="https://github.com/iamrushi100" target="_blank" rel="noreferrer">View GitHub profile <Arrow diagonal /></a><div className="contact-links"><span>CONTACT LINKS</span><p>Email and LinkedIn will appear here once their exact URLs are confirmed.</p><p className="resume-missing">Resume PDF is not yet in the repository. The download link will be enabled when the actual file is added.</p></div></div></div><div className="footer-bottom"><span className="footer-owner-small">Rushikesh Wani</span><a className="wordmark" href="#top" aria-label="Back to top"><span>R</span><i>/</i>W</a><span>BUILDING IN PUBLIC, WITH EVIDENCE.</span><a href="#top">BACK TO TOP ↑</a></div></footer>;
 }
 
 function App() {
-  if (window.location.pathname.replace(/\/$/, "") === "/projects/project-3") {
+  const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
+
+  useEffect(() => {
+    const titles = {
+      "/": "Rushikesh Wani | AI Engineer & Cybersecurity",
+      "/projects/document-retrieval": "Intelligent Document Retrieval & Evaluation | Rushikesh Wani",
+      "/projects/project-1": "Intelligent Document Retrieval & Evaluation | Rushikesh Wani",
+      "/projects/ragwatch": "RAGWatch — Retrieval Quality Evaluation | Rushikesh Wani",
+      "/projects/project-3": "RAGWatch — Retrieval Quality Evaluation | Rushikesh Wani",
+      "/projects/vuln-prioritization": "Vulnerability Prioritization | Rushikesh Wani",
+      "/projects/project-5": "Vulnerability Prioritization | Rushikesh Wani",
+    };
+    document.title = titles[pathname] || titles["/"];
+  }, [pathname]);
+
+  if (pathname === "/projects/ragwatch" || pathname === "/projects/project-3") {
     return <ProjectThreeCaseStudy />;
   }
-  if (window.location.pathname.replace(/\/$/, "") === "/projects/project-1") {
+  if (pathname === "/projects/document-retrieval" || pathname === "/projects/project-1") {
     return <ProjectOneCaseStudy />;
   }
-  if (window.location.pathname.replace(/\/$/, "") === "/projects/project-5") {
+  if (pathname === "/projects/vuln-prioritization" || pathname === "/projects/project-5") {
     return <ProjectFiveCaseStudy />;
   }
   return <><a className="skip-link" href="#main">Skip to content</a><Header/><main id="main"><Hero/><Projects/><Evidence/><About/></main><Footer/></>;
