@@ -85,5 +85,6 @@ export const evidence = [
   { label: 'Project 3 · automated tests', status: 'DOCUMENTED PRIOR RUN', detail: projectThreeTest },
   { label: 'Vulnerability Prioritization · synthetic fixture evaluation', status: 'DOCUMENTED PRIOR RUN', detail: 'Results documented in Project 5 repository documentation' },
   { label: 'Vulnerability Prioritization · automated tests', status: 'DOCUMENTED PRIOR RUN', detail: projectFiveTest },
+  { label: 'RAGWatch · GitHub Actions', status: 'VERIFIED CI RUN', detail: 'Successful repository workflow run verified during P1 audit' },
   { label: 'Raw test output and project screenshots', status: 'NOT CAPTURED', detail: 'Not captured for these portfolio case studies' },
 ];
