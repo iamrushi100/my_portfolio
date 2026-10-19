@@ -380,3 +380,12 @@ test('hero and page metadata identify the owner and lead with AI/GenAI', () => {
   assert.match(html, /property="og:image"/);
   assert.match(html, /rel="icon"/);
 });
+
+
+test('Project 5 screenshot evidence is labeled as a fictional local fixture', () => {
+  const page = readFileSync(new URL('./ProjectFiveCaseStudy.jsx', import.meta.url), 'utf8');
+  assert.match(page, /screens\/project5\/project5-dashboard\.png/);
+  assert.match(page, /screens\/project5\/project5-evaluation\.png/);
+  assert.match(page, /fictional/);
+  assert.match(page, /not official NVD, CISA or FIRST records/);
+});
