@@ -1,6 +1,28 @@
 import React from 'react';
 import { projectThree as project } from './project-three-data.js';
 import './project-three.css';
+import './project-three-evidence.css';
+
+const evidenceVisuals = [
+  {
+    src: '/evidence/ragwatch-overview.svg',
+    label: '01 / OVERVIEW',
+    title: 'Evaluation overview',
+    detail: 'Aggregate retrieval metrics and the dashboard entry point for the saved report.',
+  },
+  {
+    src: '/evidence/ragwatch-retrieval-trace.svg',
+    label: '02 / RETRIEVAL TRACE',
+    title: 'Ranked retrieval evidence',
+    detail: 'A representative question with chunk IDs, ranks, scores, relevance grades, and source documents.',
+  },
+  {
+    src: '/evidence/ragwatch-regression.svg',
+    label: '03 / REGRESSION',
+    title: 'Controlled ranking inversion',
+    detail: 'Baseline versus deliberately reversed ranking, showing the evaluator detects severe degradation.',
+  },
+];
 
 function P3Header() {
   return <header className="p3-header"><a href="/#top" className="p3-brand" aria-label="Engineering Evidence Lab, home"><b>R</b>/W <span>ENGINEERING EVIDENCE LAB</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#regression">Experiment</a><a href="#scope">Scope</a></nav></header>;
@@ -43,6 +65,10 @@ function EvidenceCard({ item, index }) {
   return <article className="p3-evidence-card"><span>0{index + 1} / EVIDENCE</span><h3>{item.label}</h3><p>{item.detail}</p></article>;
 }
 
+function EvidenceGallery() {
+  return <div className="p3-evidence-gallery" aria-label="RAGWatch dashboard evidence screenshots">{evidenceVisuals.map(item => <figure className="p3-evidence-figure" key={item.src}><a href={item.src} target="_blank" rel="noreferrer"><img src={item.src} alt={item.detail}/></a><figcaption className="p3-evidence-caption"><span>{item.label}</span><b>{item.title}</b><p>{item.detail}</p></figcaption></figure>)}</div>;
+}
+
 function ProjectThreeCaseStudy() {
   const q = project.regression.questionExample;
   return <div className="p3-case"><a className="p3-skip" href="#p3-main">Skip to case study</a><P3Header/><main id="p3-main">
@@ -60,7 +86,7 @@ function ProjectThreeCaseStudy() {
 
     <Section id="failure-analysis" number="06" title="Diagnostics point to what failed, not why"><p>Optional per-question analysis compares the ranked IDs and graded labels. It emits deterministic labels and missing/misranked chunk IDs; it does not infer root cause.</p><div className="p3-diagnostic-grid">{project.failureDiagnostics.map(item => <article key={item.label}><code>{item.label}</code><p>{item.detail}</p></article>)}</div></Section>
 
-    <Section id="evidence" number="07" title="Evidence spans metrics, artifacts, and workflow"><p>Evidence is separated by type: checked-in datasets and reports are inspectable artifacts; pytest modules cover behavior; optional history and the dashboard support run review; CI configuration defines an automated test workflow.</p><div className="p3-evidence-grid">{project.evidence.map((item, index) => <EvidenceCard key={item.label} item={item} index={index}/>)}</div><p className="p3-note">The repository reports a prior local run of 174 passing tests. The GitHub Actions workflow is checked in, but current remote CI status is not verified. Separate test output and dashboard screenshots are not captured.</p></Section>
+    <Section id="evidence" number="07" title="Evidence spans metrics, artifacts, and workflow"><p>Evidence is separated by type: checked-in datasets and reports are inspectable artifacts; pytest modules cover behavior; optional history and the dashboard support run review; CI configuration defines an automated test workflow.</p><div className="p3-evidence-grid">{project.evidence.map((item, index) => <EvidenceCard key={item.label} item={item} index={index}/>)}</div><EvidenceGallery/><p className="p3-evidence-gallery-note">Selected final dashboard evidence. Each image opens at its full available size for closer inspection.</p><p className="p3-note">The repository reports a prior local run of 174 passing tests. The GitHub Actions workflow is checked in, but current remote CI status is not verified. Separate test output and dashboard screenshots are not captured.</p></Section>
 
     <Section id="decisions" number="08" title="Trade-offs are explicit"><div className="p3-decision-grid">{project.decisions.map((item, index) => <article key={item.title}><span>0{index + 1} / DECISION</span><h3>{item.title}</h3><p>{item.detail}</p></article>)}</div></Section>
 
