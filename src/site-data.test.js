@@ -14,7 +14,7 @@ test('the homepage keeps the selected projects with explicit statuses', () => {
 });
 
 test('homepage evidence rows use project-supported states instead of universal availability', () => {
-  const supportedStatuses = new Set(['CHECKED-IN', 'DOCUMENTED PRIOR RUN', 'NOT CAPTURED']);
+  const supportedStatuses = new Set(['CHECKED-IN', 'DOCUMENTED PRIOR RUN', 'VERIFIED CI RUN', 'NOT CAPTURED']);
   assert.ok(evidence.length > 0);
   assert.ok(evidence.every(({ status }) => supportedStatuses.has(status)));
   assert.ok(evidence.some(({ status }) => status === 'CHECKED-IN'));
@@ -22,8 +22,11 @@ test('homepage evidence rows use project-supported states instead of universal a
   assert.ok(evidence.some(({ status }) => status === 'NOT CAPTURED'));
   assert.ok(evidence.every(({ status }) => status !== 'AVAILABLE'));
   assert.ok(evidence.find(({ label }) => label.includes('Project 1 · automated tests')).detail.includes('62 passed'));
-  assert.ok(evidence.find(({ label }) => label.includes('Project 3 · automated tests')).detail.includes('174 passed'));
+  assert.equal(evidence.find(({ label }) => label.includes('Project 3 · automated tests')).status, 'VERIFIED CI RUN');
+  assert.ok(evidence.find(({ label }) => label.includes('Project 3 · automated tests')).detail.includes('171 passed'));
+  assert.ok(evidence.some(({ label, status }) => /Project 3.*screenshots/i.test(label) && status === 'CHECKED-IN'));
   assert.ok(evidence.find(({ label }) => label.includes('Vulnerability Prioritization · automated tests')).detail.includes('133 passed'));
+  assert.ok(evidence.find(({ label }) => label.includes('Project 5 · automated tests')).detail.includes('133 passed'));
 });
 
 test('homepage hero states the AI engineering direction without inflated credentials', () => {
@@ -53,6 +56,8 @@ test('Project 3 has a distinct evaluation visual and verified source wording sta
   const p3 = projects.find(({ caseStudyPath }) => caseStudyPath === '/projects/ragwatch');
   assert.notEqual(p3.visualIndex, p1Visual);
   assert.equal(p3.visualIndex, 1);
+  assert.equal(p3.visualImage, '/screens/ragwatch/ragwatch-evaluation.png');
+  assert.match(p3.visualAlt, /RAGWatch Streamlit dashboard.*fictional evaluation report/i);
 
   const main = readFileSync(new URL('./main.jsx', import.meta.url), 'utf8');
   assert.match(main, /EVALUATION \/ COMPARISON/);
@@ -316,18 +321,21 @@ test('Project 3 uses verified sample metrics and inversion results with explicit
 test('Project 3 evidence labels describe reports, tests, dashboard/history, and CI', () => {
   const labels = projectThree.evidence.map(({ label }) => label);
   assert.deepEqual(labels, [
-    'Automated tests', 'Evaluation reports', 'Controlled regression report',
-    'SQLite history + dashboard', 'Continuous integration', 'Test output',
+    'Automated tests · CHECKED-IN', 'Evaluation reports · CHECKED-IN', 'Controlled regression report · CHECKED-IN',
+    'SQLite history + dashboard · CHECKED-IN', 'Continuous integration · VERIFIED CI RUN', 'Raw test output · NOT CAPTURED',
   ]);
   assert.equal(labels.length, 6);
   assert.match(projectThree.evidence[0].detail, /12 pytest modules/);
-  assert.match(projectThree.evidence[0].detail, /174 passed.*no current test run is claimed/i);
-  assert.match(projectThree.evidence[1].detail, /Checked-in JSON/);
-  assert.match(projectThree.evidence[4].detail, /Python 3\.13/);
-  assert.match(projectThree.evidence[4].detail, /current remote CI status is not verified/i);
+  assert.match(projectThree.evidence[0].detail, /85382e6.*171 passed.*2026-10-19/i);
+  assert.match(projectThree.evidence[1].detail, /Saved JSON/);
+  assert.match(projectThree.evidence[4].detail, /171 passed.*2026-10-10.*18a1935/);
+  assert.ok(projectThree.evidence[4].url.endsWith('/actions/runs/38068546601'));
   const page = readFileSync(new URL('./ProjectThreeCaseStudy.jsx', import.meta.url), 'utf8');
+  assert.match(page, /RAGWatch — retrieval-quality evaluation interface\./);
+  assert.match(page, /Evaluation evidence — Recall@k, MRR and nDCG@k\./);
+  assert.match(page, /id="evidence"/);
+  assert.match(page, /latest master commit after that run changed documentation and saved reports only/i);
   assert.doesNotMatch(page, /this case-study change/i);
-  assert.match(page, /prior local run of 174 passing tests/i);
   assert.match(page, /title="Scope & limitations"/);
   assert.match(page, /title="Source & artifacts"/);
 });
@@ -346,12 +354,13 @@ test('Portfolio V2 uses the named case-study routes and keeps legacy route fallb
   }
 });
 
-test('evidence links exist only for checked-in artifacts with verified repository paths', () => {
+test('evidence links use verified repository paths for checked-in artifacts and documented runs', () => {
   assert.ok(evidence.some(({ url }) => Boolean(url)));
   for (const item of evidence) {
     if (item.url) {
       assert.match(item.url, /^https:\/\/github\.com\/iamrushi100\//);
-      assert.equal(item.status, 'CHECKED-IN');
+      assert.ok(['CHECKED-IN', 'DOCUMENTED PRIOR RUN'].includes(item.status));
+      if (item.status === 'DOCUMENTED PRIOR RUN') assert.match(item.url, /testing-and-evaluation\.md$/);
     }
     if (item.status === 'NOT CAPTURED') assert.equal(item.url, undefined);
   }

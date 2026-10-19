@@ -23,13 +23,8 @@ function CaseStudyHero() {
 }
 
 function P1Header() {
-<<<<<<< HEAD
-  return <header className="p1-header"><a href="/#top" className="p1-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/#contact">Resume</a></nav></header>;
-=======
-  return <header className="p1-header"><a href="/#top" className="p1-brand" aria-label="Engineering Evidence Lab, home"><b>R</b>/W <span>ENGINEERING EVIDENCE LAB</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#system-evidence">Evidence</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a></nav></header>;
->>>>>>> 721248e (feat: add Project 1 evidence visuals)
+  return <header className="p1-header"><a href="/#top" className="p1-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#system-evidence">Evidence</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/#contact">Resume</a></nav></header>;
 }
-
 function Pipeline({ items, label }) {
   return <ol className="p1-pipeline" aria-label={label}>{items.map((item, index) => <li key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.detail}</p></li>)}</ol>;
 }
@@ -141,11 +136,7 @@ function ProjectOneCaseStudy() {
 
     <CaseStudySection id="metrics" number="11" title="Metrics score retrieved evidence, not answers"><p>Metrics are calculated per question and macro-averaged across cases. Duplicate retrieved chunk IDs are collapsed before scoring. For an unanswerable case the relevant set is empty, so all three metrics are explicitly zero; the report exposes answerable-only and all-case aggregates separately.</p><div className="p1-metric-definitions">{evaluation.metricDefinitions.map((metric, i) => <article key={metric.name}><span>0{i + 1}</span><h3>{metric.name}</h3><p>{metric.detail}</p></article>)}</div></CaseStudySection>
 
-<<<<<<< HEAD
-    <CaseStudySection id="evidence" number="12" title="Tests and saved artifacts answer different questions"><div className="p1-evidence-metrics"><EvidenceMetric value={project.evidence.documentedTestRun} label="DOCUMENTED PRIOR RUN" detail={`Documented prior repository run · ${project.evidence.testModules} test modules`}/><EvidenceMetric value="3" label="RETRIEVAL METHODS" detail="Semantic · BM25 · Hybrid"/><EvidenceMetric value="2" label="SAVED RESULT FORMATS" detail="Aggregate JSON · per-question CSV"/></div><div className="p1-artifact-list">{project.evidence.artifacts.map(item => <article key={item.path}><span>{item.status}</span><h3>{item.name}</h3><code>{item.path}</code></article>)}</div><p className="p1-note"><strong>Test coverage:</strong> {project.evidence.testCoverage.join('; ')}. These automated tests validate defined behavior; the saved experiment measures retrieval rankings on the authored fixture. {project.evidence.testStatus}</p></CaseStudySection>
-=======
     <CaseStudySection id="evaluation" number="12" title="Fixture results compare the three retrieval paths"><div className="p1-results-banner"><b>{evaluation.label}</b><span>Saved report · not a real-world or production result</span></div><p>These are the answerable-only macro averages in <code>{evaluation.resultPath}</code>, across {evaluation.answerableCases} questions. All methods used the same inputs, candidate depth, and metric cutoffs.</p><MetricTable/><p className="p1-note">{evaluation.interpretation} {evaluation.caveat}</p></CaseStudySection>
->>>>>>> 721248e (feat: add Project 1 evidence visuals)
 
     <CaseStudySection id="evidence" number="13" title="Tests and saved artifacts answer different questions"><div className="p1-evidence-metrics"><EvidenceMetric value={project.evidence.documentedTestRun} label="DOCUMENTED PRIOR RUN" detail={`Public README at 770b1f5 · ${project.evidence.testModules} test modules`}/><EvidenceMetric value="3" label="RETRIEVAL METHODS" detail="Semantic · BM25 · Hybrid"/><EvidenceMetric value="2" label="SAVED RESULT FORMATS" detail="Aggregate JSON · per-question CSV"/></div><div className="p1-artifact-list">{project.evidence.artifacts.map(item => <article key={item.path}><span>{item.status}</span><h3>{item.name}</h3><code>{item.path}</code></article>)}</div><p className="p1-note"><strong>Test coverage:</strong> {project.evidence.testCoverage.join('; ')}. These automated tests validate defined behavior; the saved experiment measures retrieval rankings on the authored fixture. {project.evidence.testStatus}</p></CaseStudySection>
 
@@ -153,15 +144,10 @@ function ProjectOneCaseStudy() {
 
     <CaseStudySection id="scope" number="15" title="Scope & limitations"><ul className="p1-scope-list">{project.limitations.map(item => <li key={item}>{item}</li>)}</ul></CaseStudySection>
 
-<<<<<<< HEAD
-    <CaseStudySection id="links" number="16" title="Source & artifacts"><p>{project.sourceStatus}</p><div className="p1-link-row">{project.repositoryUrl && <a href={project.repositoryUrl} target="_blank" rel="noreferrer">Open GitHub repository <span aria-hidden="true">↗</span></a>}<a href="/#projects">Return to selected work <span aria-hidden="true">←</span></a><span>Evaluation artifacts are identified above by repository-relative path.</span></div></CaseStudySection>
-  </main><footer className="p1-footer"><a href="/#projects">← Back to selected work</a><span>RUSHIKESH WANI · DOCUMENT RETRIEVAL</span><a href="/#contact">CONTACT / RESUME</a><a href="#p1-main">BACK TO TOP ↑</a></footer></div>;
-=======
     <CaseStudySection id="next-steps" number="16" title="Next engineering steps"><ol className="p1-next-steps">{project.nextSteps.map((item, i) => <li key={item}><span>0{i + 1}</span><p>{item}</p></li>)}</ol></CaseStudySection>
 
     <CaseStudySection id="links" number="17" title="Source & artifacts"><p>{project.sourceStatus}</p><div className="p1-link-row">{project.repositoryUrl && <a href={project.repositoryUrl} target="_blank" rel="noreferrer">Open GitHub repository <span aria-hidden="true">↗</span></a>}<a href="/#projects">Return to selected work <span aria-hidden="true">←</span></a><span>Evaluation artifacts are identified above by repository-relative path.</span></div></CaseStudySection>
-  </main><footer className="p1-footer"><a href="/#projects">← Back to selected work</a><span>PROJECT 01 · ENGINEERING EVIDENCE LAB</span><a href="#p1-main">BACK TO TOP ↑</a></footer></div>;
->>>>>>> 721248e (feat: add Project 1 evidence visuals)
+  </main><footer className="p1-footer"><a href="/#projects">← Back to selected work</a><span>RUSHIKESH WANI · DOCUMENT RETRIEVAL</span><a href="/#contact">CONTACT / RESUME</a><a href="#p1-main">BACK TO TOP ↑</a></footer></div>;
 }
 
 export default ProjectOneCaseStudy;

@@ -9,6 +9,7 @@
 .project-visual-image-link:hover .project-visual-image{transform:scale(1.42)}
 .project-visual-1{background:none}
 @media(max-width:650px){.project-visual-image{transform:scale(1.3)}.project-visual-image-link:hover .project-visual-image{transform:scale(1.34)}}
+.project-visual-image-link.is-full-view .project-visual-image,.project-visual-image-link.is-full-view:hover .project-visual-image{object-fit:contain;transform:none;background:#0b1116}
 
 /* The about text uses columns above; let capability groups span that full content width. */
 .skills-grid{grid-column:2 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 38px;margin-top:35px;padding-top:30px;border-top:1px solid var(--line)}

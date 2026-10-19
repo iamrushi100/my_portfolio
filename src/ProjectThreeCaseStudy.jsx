@@ -4,9 +4,8 @@ import './project-three.css';
 import DemoVideoSlot from './DemoVideoSlot.jsx';
 
 function P3Header() {
-  return <header className="p3-header"><a href="/#top" className="p3-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#regression">Experiment</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/#contact">Resume</a></nav></header>;
+  return <header className="p3-header"><a href="/#top" className="p3-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#evidence">Evidence</a><a href="#regression">Experiment</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/#contact">Resume</a></nav></header>;
 }
-
 function CaseStudyHero() {
   return <section className="p3-hero" aria-labelledby="p3-title"><div className="p3-hero-copy">
     <p className="p3-eyebrow"><span/> RETRIEVAL QUALITY / RUSHIKESH WANI</p>
@@ -41,7 +40,32 @@ function RegressionTable() {
 }
 
 function EvidenceCard({ item, index }) {
-  return <article className="p3-evidence-card"><span>0{index + 1} / EVIDENCE</span><h3>{item.label}</h3><p>{item.detail}</p></article>;
+  return <article className="p3-evidence-card"><span>0{index + 1} / EVIDENCE</span><h3>{item.label}</h3><p>{item.detail}</p>{item.url && <a className="p3-evidence-link" href={item.url} target="_blank" rel="noreferrer">Open verified workflow run <span aria-hidden="true">↗</span></a>}</article>;
+}
+
+const visualEvidence = [
+  {
+    src: '/screens/ragwatch/ragwatch-evaluation.png',
+    alt: 'RAGWatch Streamlit dashboard with the checked-in demo evaluation report selected, showing aggregate and per-question results.',
+    caption: 'RAGWatch — retrieval-quality evaluation interface.',
+    primary: true,
+  },
+  {
+    src: '/screens/ragwatch/ragwatch-metrics.png',
+    alt: 'RAGWatch dashboard report values for Recall at 2, MRR, nDCG at 2, and six fictional questions.',
+    caption: 'Evaluation evidence — Recall@k, MRR and nDCG@k.',
+  },
+];
+
+function EvidenceGallery() {
+  return <div className="p3-visual-evidence-grid">
+    {visualEvidence.map((item, index) => <figure className={`p3-visual-evidence-card${item.primary ? ' is-primary' : ''}`} key={item.src}>
+      <a href={item.src} target="_blank" rel="noreferrer" aria-label={`Open full-size image: ${item.caption}`}>
+        <img src={item.src} alt={item.alt} loading={index === 0 ? 'eager' : 'lazy'} />
+      </a>
+      <figcaption>{item.caption}</figcaption>
+    </figure>)}
+  </div>;
 }
 
 function ProjectThreeCaseStudy() {
@@ -63,7 +87,7 @@ function ProjectThreeCaseStudy() {
 
     <Section id="failure-analysis" number="06" title="Diagnostics point to what failed, not why"><p>Optional per-question analysis compares the ranked IDs and graded labels. It emits deterministic labels and missing/misranked chunk IDs; it does not infer root cause.</p><div className="p3-diagnostic-grid">{project.failureDiagnostics.map(item => <article key={item.label}><code>{item.label}</code><p>{item.detail}</p></article>)}</div></Section>
 
-    <Section id="evidence" number="07" title="Evidence spans metrics, artifacts, and workflow"><p>Evidence is separated by type: checked-in datasets and reports are inspectable artifacts; pytest modules cover behavior; optional history and the dashboard support run review; CI configuration defines an automated test workflow.</p><div className="p3-evidence-grid">{project.evidence.map((item, index) => <EvidenceCard key={item.label} item={item} index={index}/>)}</div><p className="p3-note">The repository reports a prior local run of 174 passing tests. The GitHub Actions workflow is checked in, but current remote CI status is not verified. Separate test output and dashboard screenshots are not captured.</p></Section>
+    <Section id="evidence" number="07" title="Evidence from the running app and repository"><p>The images show the read-only dashboard with a checked-in fictional evaluation report selected. Metrics are sample-fixture results, not benchmark claims.</p><EvidenceGallery/><div className="p3-evidence-grid">{project.evidence.map((item, index) => <EvidenceCard key={item.label} item={item} index={index}/>)}</div><p className="p3-note">The successful GitHub Actions run is dated and tied to its commit below; it is not presented as a current run. The latest master commit after that run changed documentation and saved reports only.</p></Section>
 
     <Section id="decisions" number="08" title="Trade-offs are explicit"><div className="p3-decision-grid">{project.decisions.map((item, index) => <article key={item.title}><span>0{index + 1} / DECISION</span><h3>{item.title}</h3><p>{item.detail}</p></article>)}</div></Section>
 
