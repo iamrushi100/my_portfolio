@@ -4,7 +4,7 @@ import './project-three.css';
 import DemoVideoSlot from './DemoVideoSlot.jsx';
 
 function P3Header() {
-  return <header className="p3-header"><a href="/#top" className="p3-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#evidence">Evidence</a><a href="#regression">Experiment</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/#contact">Resume</a></nav></header>;
+  return <header className="p3-header"><a href="/#top" className="p3-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#evidence">Evidence</a><a href="#regression">Experiment</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/Rushikesh_Wani_Portfolio_Resume.pdf" target="_blank" rel="noreferrer">Resume</a></nav></header>;
 }
 function CaseStudyHero() {
   return <section className="p3-hero" aria-labelledby="p3-title"><div className="p3-hero-copy">

@@ -85,7 +85,7 @@ function Section({ id, number, title, children, className = '' }) {
 }
 
 function P5Header() {
-  return <header className="p5-header"><a href="/#top" className="p5-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#visual-evidence">Evidence</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/#contact">Resume</a></nav></header>;
+  return <header className="p5-header"><a href="/#top" className="p5-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#visual-evidence">Evidence</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/Rushikesh_Wani_Portfolio_Resume.pdf" target="_blank" rel="noreferrer">Resume</a></nav></header>;
 }
 
 function ProjectFiveCaseStudy() {

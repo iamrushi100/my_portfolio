@@ -13,20 +13,45 @@ test('the homepage keeps the selected projects with explicit statuses', () => {
   }
 });
 
-test('homepage evidence rows use project-supported states instead of universal availability', () => {
-  const supportedStatuses = new Set(['CHECKED-IN', 'DOCUMENTED PRIOR RUN', 'VERIFIED CI RUN', 'NOT CAPTURED']);
-  assert.ok(evidence.length > 0);
+test('homepage evidence ledger groups ten useful project-level evidence rows', () => {
+  const labels = evidence.map(({ label }) => label);
+  const byLabel = new Map(evidence.map((item) => [item.label, item]));
+  const supportedStatuses = new Set(['CHECKED-IN', 'DOCUMENTED PRIOR RUN', 'VERIFIED CI RUN']);
+
+  assert.equal(evidence.length, 10);
   assert.ok(evidence.every(({ status }) => supportedStatuses.has(status)));
-  assert.ok(evidence.some(({ status }) => status === 'CHECKED-IN'));
-  assert.ok(evidence.some(({ status }) => status === 'DOCUMENTED PRIOR RUN'));
-  assert.ok(evidence.some(({ status }) => status === 'NOT CAPTURED'));
-  assert.ok(evidence.every(({ status }) => status !== 'AVAILABLE'));
-  assert.ok(evidence.find(({ label }) => label.includes('Project 1 · automated tests')).detail.includes('62 passed'));
-  assert.equal(evidence.find(({ label }) => label.includes('Project 3 · automated tests')).status, 'VERIFIED CI RUN');
-  assert.ok(evidence.find(({ label }) => label.includes('Project 3 · automated tests')).detail.includes('171 passed'));
-  assert.ok(evidence.some(({ label, status }) => /Project 3.*screenshots/i.test(label) && status === 'CHECKED-IN'));
-  assert.ok(evidence.find(({ label }) => label.includes('Vulnerability Prioritization · automated tests')).detail.includes('133 passed'));
-  assert.ok(evidence.find(({ label }) => label.includes('Project 5 · automated tests')).detail.includes('133 passed'));
+  assert.ok(evidence.every(({ status }) => status !== 'NOT CAPTURED' && status !== 'AVAILABLE'));
+
+  for (const label of [
+    'Project 1 · evaluation dataset',
+    'Project 1 · aggregate results',
+    'Project 1 · automated tests',
+    'Project 1 · product, evaluation, and API screenshots',
+  ]) assert.ok(labels.includes(label), `missing ${label}`);
+
+  for (const label of [
+    'RAGWatch · sample evaluation report',
+    'RAGWatch · ranking-inversion report',
+    'RAGWatch · CI verification',
+  ]) assert.ok(labels.includes(label), `missing ${label}`);
+
+  for (const label of [
+    'Project 5 · synthetic demo data',
+    'Project 5 · fixture evaluation',
+    'Project 5 · RISKPRIORITY product screenshots',
+  ]) assert.ok(labels.includes(label), `missing ${label}`);
+
+  assert.equal(byLabel.get('RAGWatch · CI verification').status, 'VERIFIED CI RUN');
+  assert.equal(byLabel.get('Project 1 · automated tests').status, 'DOCUMENTED PRIOR RUN');
+  assert.ok(byLabel.get('Project 1 · automated tests').detail.includes('62 passed'));
+
+  const artifactUrls = evidence.filter(({ url }) => url).map(({ url }) => url);
+  assert.ok(artifactUrls.includes('https://github.com/iamrushi100/intelligent-document-retrieval/blob/main/evaluation/dataset.json'));
+  assert.ok(artifactUrls.includes('https://github.com/iamrushi100/intelligent-document-retrieval/blob/main/evaluation/results/evaluation.json'));
+  assert.ok(artifactUrls.includes('https://github.com/iamrushi100/RAGWatch/blob/main/reports/demo-evaluation-final.json'));
+  assert.ok(artifactUrls.includes('https://github.com/iamrushi100/RAGWatch/blob/main/reports/retrieval-regression-experiment.json'));
+  assert.ok(artifactUrls.includes('https://github.com/iamrushi100/ai-security-vulnerability-prioritizer/blob/main/docs/demo-data.md'));
+  assert.ok(artifactUrls.includes('https://github.com/iamrushi100/ai-security-vulnerability-prioritizer/blob/main/docs/testing-and-evaluation.md'));
 });
 
 test('homepage hero states the AI engineering direction without inflated credentials', () => {

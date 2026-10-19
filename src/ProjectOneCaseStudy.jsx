@@ -23,7 +23,7 @@ function CaseStudyHero() {
 }
 
 function P1Header() {
-  return <header className="p1-header"><a href="/#top" className="p1-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#system-evidence">Evidence</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/#contact">Resume</a></nav></header>;
+  return <header className="p1-header"><a href="/#top" className="p1-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#system-evidence">Evidence</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/Rushikesh_Wani_Portfolio_Resume.pdf" target="_blank" rel="noreferrer">Resume</a></nav></header>;
 }
 function Pipeline({ items, label }) {
   return <ol className="p1-pipeline" aria-label={label}>{items.map((item, index) => <li key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.detail}</p></li>)}</ol>;

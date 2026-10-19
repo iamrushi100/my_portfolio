@@ -26,8 +26,8 @@ The hero contains a lightweight Three.js particle network with a translucent wir
 ## Known limitations
 
 - The Project 1, Project 3, and Project 5 case studies link to their verified public project repositories. Those repositories are separate from this portfolio website; the links do not imply that local portfolio edits or newer project work have been published there.
-- Raw test output and project screenshots are not captured unless a case study explicitly says otherwise. Test counts shown as documented prior runs are historical evidence, not current test runs.
-- Resume, email, and LinkedIn are not yet enabled: the repository does not currently contain the resume PDF, and the exact email and LinkedIn URLs must be confirmed before publishing contact links.
+- Screenshots are checked in where the corresponding case study or evidence section identifies them; this does not mean visual evidence is available for every project. The portfolio distinguishes checked-in visual evidence from documented prior test runs and synthetic fixture evidence. Test counts shown as documented prior runs are historical evidence, not current test runs.
+- The resume PDF is checked in at `public/Rushikesh_Wani_Portfolio_Resume.pdf` and linked from the homepage and case-study headers. The public email contact is enabled; LinkedIn remains a placeholder until the final profile URL is ready.
 - Google Fonts are an optional remote enhancement; system fallbacks are provided.
 - `npm test` checks the central project and evidence data; it does not simulate WebGL or browser interactions.
 
