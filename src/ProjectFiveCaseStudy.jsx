@@ -49,13 +49,31 @@ function MetricResultCard({ value, label, detail }) {
   return <article className="p5-metric-card"><b>{value}</b><span>{label}</span>{detail && <p>{detail}</p>}</article>;
 }
 
+const visualEvidence = [
+  { src: '/screens/project5/riskpriority-overview.png', alt: 'RISKPRIORITY local synthetic demo dashboard showing security snapshot counts and the first contextual priority finding.', caption: 'RISKPRIORITY dashboard · synthetic demo.', primary: true },
+  { src: '/screens/project5/riskpriority-priority-intelligence.png', alt: 'Synthetic demo priority intelligence for a fictional asset, showing contextual score factors and the beginning of ranked findings.', caption: 'Contextual priority and evidence factors.' },
+  { src: '/screens/project5/riskpriority-context-vs-cvss.png', alt: 'Synthetic fixture comparison of contextual priority ordering and CVSS-only ordering, with ranks changing between the two lists.', caption: 'Priority ranking vs CVSS-only baseline.' },
+  { src: '/screens/project5/riskpriority-sources-findings.png', alt: 'RISKPRIORITY source-role cards and prioritized fictional findings in the local synthetic demo.', caption: 'Evidence sources and asset context.' },
+];
+
+function EvidenceGallery() {
+  return <div className="p5-visual-evidence-grid">
+    {visualEvidence.map((item, index) => <figure className={`p5-visual-evidence-card${item.primary ? ' is-primary' : ''}`} key={item.src}>
+      <a href={item.src} target="_blank" rel="noreferrer" aria-label={`Open full-size image: ${item.caption}`}>
+        <img src={item.src} alt={item.alt} loading={index === 0 ? 'eager' : 'lazy'} />
+      </a>
+      <figcaption>{item.caption}</figcaption>
+    </figure>)}
+  </div>;
+}
+
 function DecisionBlock({ title, children }) {
   return <article className="p5-decision-block"><span>ENGINEERING DECISION</span><h3>{title}</h3><p>{children}</p></article>;
 }
 
 function ScopeBlock() {
   return <section className="p5-scope" id="scope" aria-labelledby="scope-title">
-    <div className="p5-section-label"><span>08</span><i /> BOUNDARIES</div>
+    <div className="p5-section-label"><span>09</span><i /> BOUNDARIES</div>
     <div><h2 id="scope-title">Scope &amp; limitations</h2>
       <ul>{project.limitations.map(item => <li key={item}>{item}</li>)}</ul>
     </div>
@@ -67,7 +85,7 @@ function Section({ id, number, title, children, className = '' }) {
 }
 
 function P5Header() {
-  return <header className="p5-header"><a href="/#top" className="p5-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/#contact">Resume</a></nav></header>;
+  return <header className="p5-header"><a href="/#top" className="p5-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#visual-evidence">Evidence</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/#contact">Resume</a></nav></header>;
 }
 
 function ProjectFiveCaseStudy() {
@@ -80,10 +98,7 @@ function ProjectFiveCaseStudy() {
 
     <Section id="architecture" number="02" title="A traceable evidence path"><p>Source connectors are separate from normalization and persistence. Assessments read stored records, match candidate products, and calculate a deterministic score locally; FastAPI and Streamlit expose findings and review state. Fetching is explicit, not continuous. {project.storage}</p><ArchitectureFlow/><p className="p5-note">NVD, CISA KEV, and FIRST EPSS fetch clients are implemented. The displayed demo and evaluation use fictional fixture values; they were not produced by live external-source fetches. Stored NVD applicability is limited to the matching rules described below.</p></Section>
 
-    <Section id="screenshots" number="03" title="See the synthetic system in action"><p>These screenshots show the local Streamlit dashboard and its saved fictional fixture. They demonstrate the interface and inspectable evidence, not real-world risk findings.</p><div className="p5-screenshot-grid">
-      <figure className="p5-product-figure p5-product-figure-primary"><a href="/screens/project5/project5-dashboard.png" target="_blank" rel="noreferrer"><img src="/screens/project5/project5-dashboard.png" alt="Vulnerability prioritization Streamlit dashboard showing fictional findings, source evidence, and contextual scoring." loading="lazy" /></a><figcaption><strong>Primary · Prioritization dashboard</strong><span>Local UI with the synthetic fixture and contextual score alongside CVSS baseline.</span></figcaption></figure>
-      <figure className="p5-product-figure"><a href="/screens/project5/project5-evaluation.png" target="_blank" rel="noreferrer"><img src="/screens/project5/project5-evaluation.png" alt="Saved offline evaluation view comparing contextual heuristic ordering with the CVSS-only baseline on fictional CVE and asset pairs." loading="lazy" /></a><figcaption><strong>Evaluation · Fixture comparison</strong><span>Six fictional CVE records × six synthetic assets; four pairs have comparable contextual and CVSS-only scores.</span></figcaption></figure>
-    </div><p className="p5-note">All CVE-shaped IDs, source observations, KEV/EPSS values and asset details in this showcase are fictional. They are not official NVD, CISA or FIRST records.</p></Section>
+    <Section id="visual-evidence" number="03" title="See the synthetic system in action"><p>These screenshots show the local Streamlit dashboard and its saved fictional fixture. They demonstrate the interface and inspectable evidence, not real-world risk findings.</p><EvidenceGallery/><p className="p5-note">All CVE-shaped IDs, source observations, KEV/EPSS values and asset details in this showcase are fictional. They are not official NVD, CISA or FIRST records.</p></Section>
 
     <Section id="evidence" number="04" title="Keep source facts, assumptions, and decisions distinct"><p>Each signal answers a different question and has its own record and provenance. This separation makes missing data and synthetic assumptions visible instead of blending them into one vulnerability record.</p><div className="p5-evidence-grid">
       {project.sources.map((source, index) => <EvidenceCard key={source.label} label={`0${index + 1} / SOURCE ROLE`} title={source.label}><p>{source.detail}</p></EvidenceCard>)}

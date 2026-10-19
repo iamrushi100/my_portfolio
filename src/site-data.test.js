@@ -400,8 +400,9 @@ test('hero and page metadata identify the owner and lead with AI/GenAI', () => {
 
 test('Project 5 screenshot evidence is labeled as a fictional local fixture', () => {
   const page = readFileSync(new URL('./ProjectFiveCaseStudy.jsx', import.meta.url), 'utf8');
-  assert.match(page, /screens\/project5\/project5-dashboard\.png/);
-  assert.match(page, /screens\/project5\/project5-evaluation\.png/);
+  for (const image of ['riskpriority-overview.png', 'riskpriority-priority-intelligence.png', 'riskpriority-context-vs-cvss.png', 'riskpriority-sources-findings.png']) {
+    assert.ok(page.includes(`/screens/project5/${image}`), `missing Project 5 evidence image: ${image}`);
+  }
   assert.match(page, /fictional/);
   assert.match(page, /not official NVD, CISA or FIRST records/);
 });

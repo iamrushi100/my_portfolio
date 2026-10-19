@@ -41,6 +41,8 @@ export const projects = [
     caseStudyPath: '/projects/vuln-prioritization',
     repositoryUrl: 'https://github.com/iamrushi100/ai-security-vulnerability-prioritizer',
     visualIndex: 2,
+    visualImage: '/screens/project5/riskpriority-overview.png',
+    visualAlt: 'RISKPRIORITY synthetic demo dashboard with security snapshot counts, priority intelligence and contextual priority score.',
   },
 ];
 
@@ -65,5 +67,6 @@ export const evidence = [
   { label: 'Vulnerability Prioritization · automated tests', status: 'DOCUMENTED PRIOR RUN', detail: projectFiveTest },
   { label: 'Project 5 · synthetic fixture evaluation', status: 'DOCUMENTED PRIOR RUN', detail: 'Results documented in Project 5 repository documentation' },
   { label: 'Project 5 · automated tests', status: 'DOCUMENTED PRIOR RUN', detail: projectFiveTest },
+  { label: 'Project 5 · RISKPRIORITY product screenshots', status: 'CHECKED-IN', detail: 'Authentic screenshots of the local synthetic demo dashboard and evidence views' },
   { label: 'Project test output for current source HEAD', status: 'NOT CAPTURED', detail: 'Current raw test output has not been attached to the portfolio evidence ledger' },
 ];
