@@ -133,7 +133,7 @@ export const projectOne = {
       { name: 'Per-question traces', path: 'evaluation/results/per_question.csv', status: 'Checked-in artifact' },
       { name: 'Automated tests', path: 'tests/', status: 'Checked-in test source' },
       { name: 'Test output', path: 'Not captured', status: 'Not captured for this portfolio case study' },
-      { name: 'Dashboard screenshot', path: 'Not captured', status: 'Not captured for this portfolio case study' },
+      { name: 'Additional dashboard screenshot', path: 'Not captured', status: 'Not captured for this portfolio case study; system evidence is shown above' },
     ],
   },
   decisions: [

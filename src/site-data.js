@@ -11,7 +11,12 @@ export const projects = [
     status: 'Implemented / evaluation documented',
     tags: ['FastAPI', 'Semantic retrieval', 'BM25', 'RRF', 'Evaluation'],
     mark: 'R∕R',
+<<<<<<< HEAD
     caseStudyPath: '/projects/document-retrieval',
+=======
+    visualImage: '/screens/project1/project1-hybrid-retrieval.png',
+    caseStudyPath: '/projects/project-1',
+>>>>>>> 721248e (feat: add Project 1 evidence visuals)
     repositoryUrl: 'https://github.com/iamrushi100/intelligent-document-retrieval',
   },
   {
@@ -83,6 +88,7 @@ export const evidence = [
     url: 'https://github.com/iamrushi100/RAGWatch/blob/main/reports/retrieval-regression-experiment.json',
   },
   { label: 'Project 3 · automated tests', status: 'DOCUMENTED PRIOR RUN', detail: projectThreeTest },
+<<<<<<< HEAD
   {
     label: 'Vulnerability Prioritization · synthetic demo data',
     status: 'CHECKED-IN',
@@ -99,3 +105,10 @@ export const evidence = [
   { label: 'RAGWatch · GitHub Actions', status: 'VERIFIED CI RUN', detail: 'Successful repository workflow run verified during P1 audit' },
   { label: 'Project test output for current source HEAD', status: 'NOT CAPTURED', detail: 'Current raw test output has not been attached to the portfolio evidence ledger' },
 ];
+=======
+  { label: 'Project 5 · synthetic fixture evaluation', status: 'DOCUMENTED PRIOR RUN', detail: 'Results documented in Project 5 repository documentation' },
+  { label: 'Project 5 · automated tests', status: 'DOCUMENTED PRIOR RUN', detail: projectFiveTest },
+  { label: 'Project 1 · product, evaluation, and API screenshots', status: 'CHECKED-IN', detail: 'Visual evidence available in the Project 1 case study' },
+  { label: 'Project 3 & 5 screenshots and raw test output', status: 'NOT CAPTURED', detail: 'Not captured for these portfolio case studies' },
+];
+>>>>>>> 721248e (feat: add Project 1 evidence visuals)

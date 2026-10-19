@@ -180,6 +180,13 @@ test('Project 1 has a linked case study with all required sections', () => {
   assert.ok(page.includes('CaseStudySection'));
   assert.match(page, /FIXTURE RESULT/);
   assert.match(page, /DOCUMENTED PRIOR RUN/);
+  assert.ok(projects[0].visualImage.endsWith('/screens/project1/project1-hybrid-retrieval.png'));
+  assert.match(page, /id="system-evidence"/);
+  assert.match(page, /Hybrid retrieval — semantic \+ BM25 candidates fused with RRF\./);
+  assert.match(page, /Saved evaluation report — 30 authored questions across the checked-in fixture\./);
+  assert.match(page, /FastAPI surface — upload, search, hybrid retrieval and \/ask endpoints\./);
+  assert.match(page, /Retrieval comparison — semantic and BM25 ranking behavior\./);
+  assert.match(page, /The documented fixture shows no measured hybrid advantage over semantic retrieval; both tie across the displayed metrics\./);
   assert.match(page, /title="Scope & limitations"/);
   assert.match(page, /title="Source & artifacts"/);
   const layout = readFileSync(new URL('./CaseStudyLayout.jsx', import.meta.url), 'utf8');
