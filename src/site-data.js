@@ -83,8 +83,19 @@ export const evidence = [
     url: 'https://github.com/iamrushi100/RAGWatch/blob/main/reports/retrieval-regression-experiment.json',
   },
   { label: 'Project 3 · automated tests', status: 'DOCUMENTED PRIOR RUN', detail: projectThreeTest },
-  { label: 'Vulnerability Prioritization · synthetic fixture evaluation', status: 'DOCUMENTED PRIOR RUN', detail: 'Results documented in Project 5 repository documentation' },
+  {
+    label: 'Vulnerability Prioritization · synthetic demo data',
+    status: 'CHECKED-IN',
+    detail: 'docs/demo-data.md · fixture scope and fictional provenance',
+    url: 'https://github.com/iamrushi100/ai-security-vulnerability-prioritizer/blob/main/docs/demo-data.md',
+  },
+  {
+    label: 'Vulnerability Prioritization · documented fixture evaluation',
+    status: 'DOCUMENTED PRIOR RUN',
+    detail: '36 CVE/asset pairs; 4 pairs with usable contextual and CVSS-only scores',
+    url: 'https://github.com/iamrushi100/ai-security-vulnerability-prioritizer/blob/main/docs/testing-and-evaluation.md',
+  },
   { label: 'Vulnerability Prioritization · automated tests', status: 'DOCUMENTED PRIOR RUN', detail: projectFiveTest },
   { label: 'RAGWatch · GitHub Actions', status: 'VERIFIED CI RUN', detail: 'Successful repository workflow run verified during P1 audit' },
-  { label: 'Raw test output and project screenshots', status: 'NOT CAPTURED', detail: 'Not captured for these portfolio case studies' },
+  { label: 'Project test output for current source HEAD', status: 'NOT CAPTURED', detail: 'Current raw test output has not been attached to the portfolio evidence ledger' },
 ];
