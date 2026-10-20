@@ -2,6 +2,38 @@ import React from 'react';
 import { projectThree as project } from './project-three-data.js';
 import './project-three.css';
 import DemoVideoSlot from './DemoVideoSlot.jsx';
+import './project-three-evidence.css';
+
+const evidenceVisuals = [
+  {
+    src: '/screens/ragwatch/ragwatch-evaluation.png',
+    alt: 'RAGWatch Streamlit dashboard with the checked-in demo evaluation report selected, showing aggregate and per-question results.',
+    label: '01 / RUNNING INTERFACE',
+    title: 'RAGWatch evaluation interface',
+    detail: 'RAGWatch — retrieval-quality evaluation interface.',
+  },
+  {
+    src: '/screens/ragwatch/ragwatch-metrics.png',
+    alt: 'RAGWatch dashboard report values for Recall at 2, MRR, nDCG at 2, and six fictional questions.',
+    label: '02 / CHECKED-IN REPORT',
+    title: 'Saved evaluation metrics',
+    detail: 'Evaluation evidence — Recall@k, MRR and nDCG@k.',
+  },
+  {
+    src: '/evidence/ragwatch-retrieval-trace.svg',
+    alt: 'RAGWatch retrieval trace showing a representative question, ranked chunk IDs, scores, relevance grades, and source documents.',
+    label: '03 / RETRIEVAL TRACE',
+    title: 'Ranked retrieval evidence',
+    detail: 'A representative question with chunk IDs, ranks, scores, relevance grades, and source documents.',
+  },
+  {
+    src: '/evidence/ragwatch-regression.svg',
+    alt: 'Controlled fictional-fixture comparison of a baseline ranking and a deliberately reversed ranking.',
+    label: '04 / CONTROLLED EXPERIMENT',
+    title: 'Controlled ranking inversion',
+    detail: 'Baseline versus deliberately reversed ranking in the checked-in fictional fixture.',
+  },
+];
 
 function P3Header() {
   return <header className="p3-header"><a href="/#top" className="p3-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#evidence">Evidence</a><a href="#regression">Experiment</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/Rushikesh_Wani_Portfolio_Resume.pdf" target="_blank" rel="noreferrer">Resume</a></nav></header>;
@@ -43,29 +75,8 @@ function EvidenceCard({ item, index }) {
   return <article className="p3-evidence-card"><span>0{index + 1} / EVIDENCE</span><h3>{item.label}</h3><p>{item.detail}</p>{item.url && <a className="p3-evidence-link" href={item.url} target="_blank" rel="noreferrer">Open verified workflow run <span aria-hidden="true">↗</span></a>}</article>;
 }
 
-const visualEvidence = [
-  {
-    src: '/screens/ragwatch/ragwatch-evaluation.png',
-    alt: 'RAGWatch Streamlit dashboard with the checked-in demo evaluation report selected, showing aggregate and per-question results.',
-    caption: 'RAGWatch — retrieval-quality evaluation interface.',
-    primary: true,
-  },
-  {
-    src: '/screens/ragwatch/ragwatch-metrics.png',
-    alt: 'RAGWatch dashboard report values for Recall at 2, MRR, nDCG at 2, and six fictional questions.',
-    caption: 'Evaluation evidence — Recall@k, MRR and nDCG@k.',
-  },
-];
-
 function EvidenceGallery() {
-  return <div className="p3-visual-evidence-grid">
-    {visualEvidence.map((item, index) => <figure className={`p3-visual-evidence-card${item.primary ? ' is-primary' : ''}`} key={item.src}>
-      <a href={item.src} target="_blank" rel="noreferrer" aria-label={`Open full-size image: ${item.caption}`}>
-        <img src={item.src} alt={item.alt} loading={index === 0 ? 'eager' : 'lazy'} />
-      </a>
-      <figcaption>{item.caption}</figcaption>
-    </figure>)}
-  </div>;
+  return <div className="p3-evidence-gallery" aria-label="RAGWatch interface, retrieval, and evaluation evidence">{evidenceVisuals.map(item => <figure className="p3-evidence-figure" key={item.src}><a href={item.src} target="_blank" rel="noreferrer" aria-label={`Open full-size image: ${item.title}`}><img src={item.src} alt={item.alt}/></a><figcaption className="p3-evidence-caption"><span>{item.label}</span><b>{item.title}</b><p>{item.detail}</p></figcaption></figure>)}</div>;
 }
 
 function ProjectThreeCaseStudy() {
