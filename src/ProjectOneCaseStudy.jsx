@@ -2,11 +2,12 @@ import React from 'react';
 import { projectOne as project } from './project-one-data.js';
 import './project-one.css';
 import { CaseStudySection } from './CaseStudyLayout.jsx';
+import DemoVideoSlot from './DemoVideoSlot.jsx';
 
 function CaseStudyHero() {
   return <section className="p1-hero" aria-labelledby="p1-title">
     <div className="p1-hero-copy">
-      <p className="p1-eyebrow"><span /> RETRIEVAL ENGINEERING / CASE 01</p>
+      <p className="p1-eyebrow"><span /> RETRIEVAL ENGINEERING / RUSHIKESH WANI</p>
       <h1 id="p1-title">{project.title}</h1>
       <p className="p1-lede">{project.description}</p>
       <p className="p1-status"><span>STATUS</span>{project.status}</p>
@@ -22,9 +23,8 @@ function CaseStudyHero() {
 }
 
 function P1Header() {
-  return <header className="p1-header"><a href="/#top" className="p1-brand" aria-label="Engineering Evidence Lab, home"><b>R</b>/W <span>ENGINEERING EVIDENCE LAB</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a></nav></header>;
+  return <header className="p1-header"><a href="/#top" className="p1-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#system-evidence">Evidence</a><a href="#evaluation">Evaluation</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/Rushikesh_Wani_Portfolio_Resume.pdf" target="_blank" rel="noreferrer">Resume</a></nav></header>;
 }
-
 function Pipeline({ items, label }) {
   return <ol className="p1-pipeline" aria-label={label}>{items.map((item, index) => <li key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.detail}</p></li>)}</ol>;
 }
@@ -67,6 +67,41 @@ function EvidenceMetric({ value, label, detail }) {
   return <article className="p1-evaluation-metric"><b>{value}</b><span>{label}</span>{detail && <p>{detail}</p>}</article>;
 }
 
+const evidenceImages = [
+  {
+    src: '/screens/project1/project1-hybrid-retrieval.png',
+    alt: 'DocFind interface showing uploaded documents and ranked results from hybrid semantic and BM25 retrieval.',
+    caption: 'Hybrid retrieval — semantic + BM25 candidates fused with RRF.',
+    primary: true,
+  },
+  {
+    src: '/screens/project1/project1-evaluation-results.png',
+    alt: 'Saved evaluation report table for 30 authored questions, comparing Semantic, BM25, and Hybrid metrics.',
+    caption: 'Saved evaluation report — 30 authored questions across the checked-in fixture.',
+  },
+  {
+    src: '/screens/project1/project1-api.png',
+    alt: 'FastAPI Swagger interface listing upload, search, hybrid retrieval, and ask endpoints.',
+    caption: 'FastAPI surface — upload, search, hybrid retrieval and /ask endpoints.',
+  },
+  {
+    src: '/screens/project1/semantic-vs-bm25.png',
+    alt: 'Side-by-side semantic and BM25 retrieval rankings for the same query.',
+    caption: 'Retrieval comparison — semantic and BM25 ranking behavior.',
+  },
+];
+
+function SystemEvidenceGallery() {
+  return <div className="p1-system-evidence-grid">
+    {evidenceImages.map((item, index) => <figure className={`p1-system-evidence-card${item.primary ? ' is-primary' : ''}`} key={item.src}>
+      <a href={item.src} target="_blank" rel="noreferrer" aria-label={`Open full-size image: ${item.caption}`}>
+        <img src={item.src} alt={item.alt} loading={index === 0 ? 'eager' : 'lazy'} />
+      </a>
+      <figcaption>{item.caption}</figcaption>
+    </figure>)}
+  </div>;
+}
+
 function ProjectOneCaseStudy() {
   const evaluation = project.evaluation;
   const generation = project.generation;
@@ -76,6 +111,8 @@ function ProjectOneCaseStudy() {
   const methods = evaluation.aggregates.map((method, i) => ({ ...method, index: `0${i + 1}` }));
   return <div className="p1-case"><a className="p1-skip" href="#p1-main">Skip to case study</a><P1Header/><main id="p1-main">
     <CaseStudyHero/>
+    <DemoVideoSlot title={project.title} />
+    <section className="p1-fast-scan" aria-label="Project summary"><article><span>PROBLEM</span><p>Find the relevant passage in uploaded PDF, DOCX, and TXT files.</p></article><article><span>WHAT I BUILT</span><p>FastAPI ingestion, semantic and BM25 retrieval, RRF rank fusion, evaluation, and a separate /ask route.</p></article><article><span>KEY RESULT</span><p>Recall@5 and MRR tie at 1.0 for semantic and hybrid on the 30-question fixture; no hybrid advantage was measured.</p></article></section>
 
     <CaseStudySection id="problem" number="01" title="Find the source passage before answering"><p>The system turns uploaded PDF, DOCX, and TXT files into searchable passages with document and page metadata. A single retrieval signal can miss evidence in different ways: keyword search depends on term overlap, while semantic similarity can miss an exact identifier or error code. Embeddings help find passages phrased differently from a query; BM25 adds a lexical signal for exact technical terms. The system compares both paths and fuses their rankings.</p><p>A separate <code>/ask</code> route connects hybrid retrieval to a generator, using a mock by default. The evaluation described here measures passage retrieval only; it does not score generated answers or establish answer correctness.</p><div className="p1-decision-callout"><b>FIXTURE RESULT</b><p>The documented fixture shows no measured hybrid advantage over semantic retrieval; both tie across the displayed metrics.</p></div></CaseStudySection>
 
@@ -91,24 +128,26 @@ function ProjectOneCaseStudy() {
 
     <CaseStudySection id="hybrid" number="07" title="RRF fuses rankings rather than unlike scores"><p>{hybrid.rationale} {hybrid.behavior}</p><div className="p1-rrf-equation"><span>RECIPROCAL RANK FUSION</span><code>RRF(chunk) = Σ 1 / ({evaluation.rrfConstant} + one-based rank)</code><p>{hybrid.maximumCandidatePool} RRF is a ranking rule; a better rank on this fixture does not establish a general retrieval improvement.</p></div><div className="p1-method-grid">{methods.map(method => <MethodCard key={method.key} method={method}/>)}</div></CaseStudySection>
 
-    <CaseStudySection id="rag-generation" number="08" title="A separate /ask path builds context and generates"><p><code>{generation.endpoint}</code> connects the existing hybrid retriever to a text generator. It selects top-ranked chunks, formats them as source-labeled context, and returns the answer with source metadata. This is an implemented request path; answer quality is not part of the retrieval evaluation.</p><div className="p1-evidence-grid"><EvidenceCard index="1" title="Build inspectable context"><p>{generation.context}</p></EvidenceCard><EvidenceCard index="2" title="Use a deterministic default"><p>{generation.mock}</p></EvidenceCard><EvidenceCard index="3" title="Allow an optional provider"><p>{generation.openai}</p></EvidenceCard><EvidenceCard index="4" title="Handle empty retrieval"><p>{generation.empty}</p></EvidenceCard><EvidenceCard index="5" title="Contain provider failures"><p>{generation.failure}</p></EvidenceCard></div><p className="p1-note">{generation.caveat}</p></CaseStudySection>
+    <CaseStudySection id="system-evidence" number="08" title="System in action"><SystemEvidenceGallery/></CaseStudySection>
 
-    <CaseStudySection id="evaluation-data" number="09" title="The checked-in fixture is small but traceable"><p>{evaluation.corpusDescription} These manually authored questions label relevant source files; the runner validates those labels, parses the TXT fixtures, chunks them, and maps each source label to its generated chunk IDs. The current eight documents each produce one chunk.</p><div className="p1-evaluation-metrics"><EvidenceMetric value={`${evaluation.cases}`} label="AUTHORED QUESTIONS" detail="Checked-in fixture dataset"/><EvidenceMetric value={`${evaluation.answerableCases} / ${evaluation.unanswerableCases}`} label="ANSWERABLE / UNANSWERABLE"/><EvidenceMetric value={`${evaluation.corpusDocuments} → ${evaluation.corpusChunks}`} label="CORPUS DOCS → CHUNKS" detail="One chunk per source in this run"/><EvidenceMetric value={`${evaluation.candidateDepthPerRetriever}`} label="CANDIDATES PER RETRIEVER" detail={`K cutoffs: ${evaluation.ks.join(', ')}`}/></div><div className="p1-category-list"><span>QUESTION CATEGORIES</span><p>Exact identifier · paraphrase · ordinary question · technical terminology · unanswerable</p></div><p className="p1-note">{evaluation.comparisonMethod}</p></CaseStudySection>
+    <CaseStudySection id="rag-generation" number="09" title="A separate /ask path builds context and generates"><p><code>{generation.endpoint}</code> connects the existing hybrid retriever to a text generator. It selects top-ranked chunks, formats them as source-labeled context, and returns the answer with source metadata. This is an implemented request path; answer quality is not part of the retrieval evaluation.</p><div className="p1-evidence-grid"><EvidenceCard index="1" title="Build inspectable context"><p>{generation.context}</p></EvidenceCard><EvidenceCard index="2" title="Use a deterministic default"><p>{generation.mock}</p></EvidenceCard><EvidenceCard index="3" title="Allow an optional provider"><p>{generation.openai}</p></EvidenceCard><EvidenceCard index="4" title="Handle empty retrieval"><p>{generation.empty}</p></EvidenceCard><EvidenceCard index="5" title="Contain provider failures"><p>{generation.failure}</p></EvidenceCard></div><p className="p1-note">{generation.caveat}</p></CaseStudySection>
 
-    <CaseStudySection id="metrics" number="10" title="Metrics score retrieved evidence, not answers"><p>Metrics are calculated per question and macro-averaged across cases. Duplicate retrieved chunk IDs are collapsed before scoring. For an unanswerable case the relevant set is empty, so all three metrics are explicitly zero; the report exposes answerable-only and all-case aggregates separately.</p><div className="p1-metric-definitions">{evaluation.metricDefinitions.map((metric, i) => <article key={metric.name}><span>0{i + 1}</span><h3>{metric.name}</h3><p>{metric.detail}</p></article>)}</div></CaseStudySection>
+    <CaseStudySection id="evaluation-data" number="10" title="The checked-in fixture is small but traceable"><p>{evaluation.corpusDescription} These manually authored questions label relevant source files; the runner validates those labels, parses the TXT fixtures, chunks them, and maps each source label to its generated chunk IDs. The current eight documents each produce one chunk.</p><div className="p1-evaluation-metrics"><EvidenceMetric value={`${evaluation.cases}`} label="AUTHORED QUESTIONS" detail="Checked-in fixture dataset"/><EvidenceMetric value={`${evaluation.answerableCases} / ${evaluation.unanswerableCases}`} label="ANSWERABLE / UNANSWERABLE"/><EvidenceMetric value={`${evaluation.corpusDocuments} → ${evaluation.corpusChunks}`} label="CORPUS DOCS → CHUNKS" detail="One chunk per source in this run"/><EvidenceMetric value={`${evaluation.candidateDepthPerRetriever}`} label="CANDIDATES PER RETRIEVER" detail={`K cutoffs: ${evaluation.ks.join(', ')}`}/></div><div className="p1-category-list"><span>QUESTION CATEGORIES</span><p>Exact identifier · paraphrase · ordinary question · technical terminology · unanswerable</p></div><p className="p1-note">{evaluation.comparisonMethod}</p></CaseStudySection>
 
-    <CaseStudySection id="evaluation" number="11" title="Fixture results compare the three retrieval paths"><div className="p1-results-banner"><b>{evaluation.label}</b><span>Saved report · not a real-world or production result</span></div><p>These are the answerable-only macro averages in <code>{evaluation.resultPath}</code>, across {evaluation.answerableCases} questions. All methods used the same inputs, candidate depth, and metric cutoffs.</p><MetricTable/><p className="p1-note">{evaluation.interpretation} {evaluation.caveat}</p></CaseStudySection>
+    <CaseStudySection id="metrics" number="11" title="Metrics score retrieved evidence, not answers"><p>Metrics are calculated per question and macro-averaged across cases. Duplicate retrieved chunk IDs are collapsed before scoring. For an unanswerable case the relevant set is empty, so all three metrics are explicitly zero; the report exposes answerable-only and all-case aggregates separately.</p><div className="p1-metric-definitions">{evaluation.metricDefinitions.map((metric, i) => <article key={metric.name}><span>0{i + 1}</span><h3>{metric.name}</h3><p>{metric.detail}</p></article>)}</div></CaseStudySection>
 
-    <CaseStudySection id="evidence" number="12" title="Tests and saved artifacts answer different questions"><div className="p1-evidence-metrics"><EvidenceMetric value={project.evidence.documentedTestRun} label="DOCUMENTED PRIOR RUN" detail={`Public README at 770b1f5 · ${project.evidence.testModules} test modules`}/><EvidenceMetric value="3" label="RETRIEVAL METHODS" detail="Semantic · BM25 · Hybrid"/><EvidenceMetric value="2" label="SAVED RESULT FORMATS" detail="Aggregate JSON · per-question CSV"/></div><div className="p1-artifact-list">{project.evidence.artifacts.map(item => <article key={item.path}><span>{item.status}</span><h3>{item.name}</h3><code>{item.path}</code></article>)}</div><p className="p1-note"><strong>Test coverage:</strong> {project.evidence.testCoverage.join('; ')}. These automated tests validate defined behavior; the saved experiment measures retrieval rankings on the authored fixture. {project.evidence.testStatus}</p></CaseStudySection>
+    <CaseStudySection id="evaluation" number="12" title="Fixture results compare the three retrieval paths"><div className="p1-results-banner"><b>{evaluation.label}</b><span>Saved report · not a real-world or production result</span></div><p>These are the answerable-only macro averages in <code>{evaluation.resultPath}</code>, across {evaluation.answerableCases} questions. All methods used the same inputs, candidate depth, and metric cutoffs.</p><MetricTable/><p className="p1-note">{evaluation.interpretation} {evaluation.caveat}</p></CaseStudySection>
 
-    <CaseStudySection id="decisions" number="13" title="Decisions favor inspectability at local scale"><div className="p1-decision-grid">{project.decisions.map((decision, i) => <article key={decision.title}><span>0{i + 1} / TRADE-OFF</span><h3>{decision.title}</h3><p>{decision.detail}</p></article>)}</div></CaseStudySection>
+    <CaseStudySection id="evidence" number="13" title="Tests and saved artifacts answer different questions"><div className="p1-evidence-metrics"><EvidenceMetric value={project.evidence.documentedTestRun} label="DOCUMENTED PRIOR RUN" detail={`Public README at 770b1f5 · ${project.evidence.testModules} test modules`}/><EvidenceMetric value="3" label="RETRIEVAL METHODS" detail="Semantic · BM25 · Hybrid"/><EvidenceMetric value="2" label="SAVED RESULT FORMATS" detail="Aggregate JSON · per-question CSV"/></div><div className="p1-artifact-list">{project.evidence.artifacts.map(item => <article key={item.path}><span>{item.status}</span><h3>{item.name}</h3><code>{item.path}</code></article>)}</div><p className="p1-note"><strong>Test coverage:</strong> {project.evidence.testCoverage.join('; ')}. These automated tests validate defined behavior; the saved experiment measures retrieval rankings on the authored fixture. {project.evidence.testStatus}</p></CaseStudySection>
 
-    <CaseStudySection id="scope" number="14" title="Scope & limitations"><ul className="p1-scope-list">{project.limitations.map(item => <li key={item}>{item}</li>)}</ul></CaseStudySection>
+    <CaseStudySection id="decisions" number="14" title="Decisions favor inspectability at local scale"><div className="p1-decision-grid">{project.decisions.map((decision, i) => <article key={decision.title}><span>0{i + 1} / TRADE-OFF</span><h3>{decision.title}</h3><p>{decision.detail}</p></article>)}</div></CaseStudySection>
 
-    <CaseStudySection id="next-steps" number="15" title="Next engineering steps"><ol className="p1-next-steps">{project.nextSteps.map((item, i) => <li key={item}><span>0{i + 1}</span><p>{item}</p></li>)}</ol></CaseStudySection>
+    <CaseStudySection id="scope" number="15" title="Scope & limitations"><ul className="p1-scope-list">{project.limitations.map(item => <li key={item}>{item}</li>)}</ul></CaseStudySection>
 
-    <CaseStudySection id="links" number="16" title="Source & artifacts"><p>{project.sourceStatus}</p><div className="p1-link-row">{project.repositoryUrl && <a href={project.repositoryUrl} target="_blank" rel="noreferrer">Open GitHub repository <span aria-hidden="true">↗</span></a>}<a href="/#projects">Return to selected work <span aria-hidden="true">←</span></a><span>Evaluation artifacts are identified above by repository-relative path.</span></div></CaseStudySection>
-  </main><footer className="p1-footer"><a href="/#projects">← Back to selected work</a><span>PROJECT 01 · ENGINEERING EVIDENCE LAB</span><a href="#p1-main">BACK TO TOP ↑</a></footer></div>;
+    <CaseStudySection id="next-steps" number="16" title="Next engineering steps"><ol className="p1-next-steps">{project.nextSteps.map((item, i) => <li key={item}><span>0{i + 1}</span><p>{item}</p></li>)}</ol></CaseStudySection>
+
+    <CaseStudySection id="links" number="17" title="Source & artifacts"><p>{project.sourceStatus}</p><div className="p1-link-row">{project.repositoryUrl && <a href={project.repositoryUrl} target="_blank" rel="noreferrer">Open GitHub repository <span aria-hidden="true">↗</span></a>}<a href="/#projects">Return to selected work <span aria-hidden="true">←</span></a><span>Evaluation artifacts are identified above by repository-relative path.</span></div></CaseStudySection>
+  </main><footer className="p1-footer"><a href="/#projects">← Back to selected work</a><span>RUSHIKESH WANI · DOCUMENT RETRIEVAL</span><a href="/#contact">CONTACT / RESUME</a><a href="#p1-main">BACK TO TOP ↑</a></footer></div>;
 }
 
 export default ProjectOneCaseStudy;

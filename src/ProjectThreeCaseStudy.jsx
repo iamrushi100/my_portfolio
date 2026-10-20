@@ -1,36 +1,46 @@
 import React from 'react';
 import { projectThree as project } from './project-three-data.js';
 import './project-three.css';
+import DemoVideoSlot from './DemoVideoSlot.jsx';
 import './project-three-evidence.css';
 
 const evidenceVisuals = [
   {
-    src: '/evidence/ragwatch-overview.svg',
-    label: '01 / OVERVIEW',
-    title: 'Evaluation overview',
-    detail: 'Aggregate retrieval metrics and the dashboard entry point for the saved report.',
+    src: '/screens/ragwatch/ragwatch-evaluation.png',
+    alt: 'RAGWatch Streamlit dashboard with the checked-in demo evaluation report selected, showing aggregate and per-question results.',
+    label: '01 / RUNNING INTERFACE',
+    title: 'RAGWatch evaluation interface',
+    detail: 'RAGWatch — retrieval-quality evaluation interface.',
+  },
+  {
+    src: '/screens/ragwatch/ragwatch-metrics.png',
+    alt: 'RAGWatch dashboard report values for Recall at 2, MRR, nDCG at 2, and six fictional questions.',
+    label: '02 / CHECKED-IN REPORT',
+    title: 'Saved evaluation metrics',
+    detail: 'Evaluation evidence — Recall@k, MRR and nDCG@k.',
   },
   {
     src: '/evidence/ragwatch-retrieval-trace.svg',
-    label: '02 / RETRIEVAL TRACE',
+    alt: 'RAGWatch retrieval trace showing a representative question, ranked chunk IDs, scores, relevance grades, and source documents.',
+    label: '03 / RETRIEVAL TRACE',
     title: 'Ranked retrieval evidence',
     detail: 'A representative question with chunk IDs, ranks, scores, relevance grades, and source documents.',
   },
   {
     src: '/evidence/ragwatch-regression.svg',
-    label: '03 / REGRESSION',
+    alt: 'Controlled fictional-fixture comparison of a baseline ranking and a deliberately reversed ranking.',
+    label: '04 / CONTROLLED EXPERIMENT',
     title: 'Controlled ranking inversion',
-    detail: 'Baseline versus deliberately reversed ranking, showing the evaluator detects severe degradation.',
+    detail: 'Baseline versus deliberately reversed ranking in the checked-in fictional fixture.',
   },
 ];
 
 function P3Header() {
-  return <header className="p3-header"><a href="/#top" className="p3-brand" aria-label="Engineering Evidence Lab, home"><b>R</b>/W <span>ENGINEERING EVIDENCE LAB</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#regression">Experiment</a><a href="#scope">Scope</a></nav></header>;
+  return <header className="p3-header"><a href="/#top" className="p3-brand" aria-label="Rushikesh Wani, home"><b>R</b>/W <span>RUSHIKESH WANI</span></a><nav aria-label="Case study navigation"><a href="/#projects">All work</a><a href="#architecture">Architecture</a><a href="#evidence">Evidence</a><a href="#regression">Experiment</a><a href="#scope">Scope</a><a href="/#contact">Contact</a><a href="/Rushikesh_Wani_Portfolio_Resume.pdf" target="_blank" rel="noreferrer">Resume</a></nav></header>;
 }
-
 function CaseStudyHero() {
   return <section className="p3-hero" aria-labelledby="p3-title"><div className="p3-hero-copy">
-    <p className="p3-eyebrow"><span/> RETRIEVAL QUALITY / CASE 03</p>
+    <p className="p3-eyebrow"><span/> RETRIEVAL QUALITY / RUSHIKESH WANI</p>
     <h1 id="p3-title">{project.title}</h1>
     <p className="p3-lede">{project.description} The system evaluates retrieval; it does not generate or judge answers.</p>
     <p className="p3-status"><span>STATUS</span>{project.status}</p>
@@ -62,17 +72,19 @@ function RegressionTable() {
 }
 
 function EvidenceCard({ item, index }) {
-  return <article className="p3-evidence-card"><span>0{index + 1} / EVIDENCE</span><h3>{item.label}</h3><p>{item.detail}</p></article>;
+  return <article className="p3-evidence-card"><span>0{index + 1} / EVIDENCE</span><h3>{item.label}</h3><p>{item.detail}</p>{item.url && <a className="p3-evidence-link" href={item.url} target="_blank" rel="noreferrer">Open verified artifact <span aria-hidden="true">↗</span></a>}</article>;
 }
 
 function EvidenceGallery() {
-  return <div className="p3-evidence-gallery" aria-label="RAGWatch dashboard evidence screenshots">{evidenceVisuals.map(item => <figure className="p3-evidence-figure" key={item.src}><a href={item.src} target="_blank" rel="noreferrer"><img src={item.src} alt={item.detail}/></a><figcaption className="p3-evidence-caption"><span>{item.label}</span><b>{item.title}</b><p>{item.detail}</p></figcaption></figure>)}</div>;
+  return <div className="p3-evidence-gallery" aria-label="RAGWatch interface, retrieval, and evaluation evidence">{evidenceVisuals.map(item => <figure className="p3-evidence-figure" key={item.src}><a href={item.src} target="_blank" rel="noreferrer" aria-label={`Open full-size image: ${item.title}`}><img src={item.src} alt={item.alt}/></a><figcaption className="p3-evidence-caption"><span>{item.label}</span><b>{item.title}</b><p>{item.detail}</p></figcaption></figure>)}</div>;
 }
 
 function ProjectThreeCaseStudy() {
   const q = project.regression.questionExample;
   return <div className="p3-case"><a className="p3-skip" href="#p3-main">Skip to case study</a><P3Header/><main id="p3-main">
     <CaseStudyHero/>
+    <DemoVideoSlot title={project.title} />
+    <section className="p3-fast-scan" aria-label="Project summary"><article><span>PROBLEM</span><p>Measure whether a retrieval ranking change improves or degrades relevant evidence order.</p></article><article><span>WHAT I BUILT</span><p>A TF-IDF baseline, retrieval metrics, CLI reports, SQLite run history, and a read-only Streamlit dashboard.</p></article><article><span>KEY RESULT</span><p>MRR fell from 0.833 to 0.087 when all rankings were reversed in a six-question fictional fixture.</p></article></section>
 
     <Section id="problem" number="01" title="Measure retrieval before evaluating answers"><p>Retrieval changes need a repeatable way to check whether labeled evidence appears near the top of a ranking. RAGWatch isolates that question: validate a small dataset, rank chunks for each question, calculate graded retrieval metrics, and inspect the per-question results.</p><p>It is a standalone, local-first evaluation tool. It evaluates retrieval quality only; it does not generate answers, decide whether an answer is correct, or use an LLM judge.</p><div className="p3-callout"><b>RESULT SUMMARY</b><p>{project.overviewSummary}</p></div></Section>
 
@@ -86,7 +98,7 @@ function ProjectThreeCaseStudy() {
 
     <Section id="failure-analysis" number="06" title="Diagnostics point to what failed, not why"><p>Optional per-question analysis compares the ranked IDs and graded labels. It emits deterministic labels and missing/misranked chunk IDs; it does not infer root cause.</p><div className="p3-diagnostic-grid">{project.failureDiagnostics.map(item => <article key={item.label}><code>{item.label}</code><p>{item.detail}</p></article>)}</div></Section>
 
-    <Section id="evidence" number="07" title="Evidence spans metrics, artifacts, and workflow"><p>Evidence is separated by type: checked-in datasets and reports are inspectable artifacts; pytest modules cover behavior; optional history and the dashboard support run review; CI configuration defines an automated test workflow.</p><div className="p3-evidence-grid">{project.evidence.map((item, index) => <EvidenceCard key={item.label} item={item} index={index}/>)}</div><EvidenceGallery/><p className="p3-evidence-gallery-note">Selected final dashboard evidence. Each image opens at its full available size for closer inspection.</p><p className="p3-note">The repository reports a prior local run of 174 passing tests. The GitHub Actions workflow is checked in, but current remote CI status is not verified. Separate test output and dashboard screenshots are not captured.</p></Section>
+    <Section id="evidence" number="07" title="Evidence from the running app and repository"><p>The images show the read-only dashboard with a checked-in fictional evaluation report selected. Metrics are sample-fixture results, not benchmark claims.</p><EvidenceGallery/><div className="p3-evidence-grid">{project.evidence.map((item, index) => <EvidenceCard key={item.label} item={item} index={index}/>)}</div><p className="p3-note">The successful GitHub Actions run is dated and tied to its commit below; it is not presented as a current run. The latest master commit after that run changed documentation and saved reports only.</p></Section>
 
     <Section id="decisions" number="08" title="Trade-offs are explicit"><div className="p3-decision-grid">{project.decisions.map((item, index) => <article key={item.title}><span>0{index + 1} / DECISION</span><h3>{item.title}</h3><p>{item.detail}</p></article>)}</div></Section>
 
@@ -95,7 +107,7 @@ function ProjectThreeCaseStudy() {
     <Section id="next-steps" number="10" title="Next engineering steps"><ol className="p3-next-list">{project.nextSteps.map((item, index) => <li key={item}><span>0{index + 1}</span><p>{item}</p></li>)}</ol></Section>
 
     <Section id="links" number="11" title="Source & artifacts"><p>{project.sourceStatus}. The dataset, evaluation, and regression report are identified by repository-relative paths above.</p><div className="p3-link-row">{project.repositoryUrl && <a href={project.repositoryUrl} target="_blank" rel="noreferrer">Open GitHub repository <span aria-hidden="true">↗</span></a>}<a href="/#projects">Return to selected work <span aria-hidden="true">←</span></a><span>RAGWatch · retrieval evaluation only</span></div></Section>
-  </main><footer className="p3-footer"><a href="/#projects">← Back to selected work</a><span>RAGWATCH · PROJECT 03</span><a href="#p3-main">BACK TO TOP ↑</a></footer></div>;
+  </main><footer className="p3-footer"><a href="/#projects">← Back to selected work</a><span>RUSHIKESH WANI · RAGWATCH</span><a href="/#contact">CONTACT / RESUME</a><a href="#p3-main">BACK TO TOP ↑</a></footer></div>;
 }
 
 export default ProjectThreeCaseStudy;

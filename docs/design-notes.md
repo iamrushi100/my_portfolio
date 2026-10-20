@@ -17,4 +17,4 @@ A custom Three.js canvas renders a low-density particle network with a wireframe
 
 ## Deliberate deferrals
 
-No case-study pages, backend, analytics, chatbot, CMS, or remote project media. Browser-based screenshot, console, and assistive-technology checks remain separate from the production build and must be verified in a browser-capable environment.
+Case-study pages are implemented at `/projects/document-retrieval`, `/projects/ragwatch`, and `/projects/vuln-prioritization`. A backend, analytics, chatbot, CMS, and remote project media remain deferred. Browser-based screenshot, console, and assistive-technology checks remain separate from the production build and must be verified in a browser-capable environment.

@@ -4,9 +4,9 @@ export const projectOne = {
   status: 'Implemented / evaluation documented',
   description: 'A local FastAPI document retrieval platform that combines semantic and BM25 search, evaluates ranked evidence, and exposes an end-to-end RAG route with source-labeled context and configurable generation.',
   tags: ['Python', 'FastAPI', 'SQLite', 'Sentence Transformers', 'BM25'],
-  caseStudyPath: '/projects/project-1',
+  caseStudyPath: '/projects/document-retrieval',
   repositoryUrl: 'https://github.com/iamrushi100/intelligent-document-retrieval',
-  sourceStatus: 'Public GitHub repository · includes the published RAG milestone 770b1f5.',
+  sourceStatus: 'Public GitHub repository · evaluation artifacts are identified by repository-relative paths.',
   requiredSections: [
     'problem', 'architecture', 'ingestion', 'chunking', 'semantic', 'lexical',
     'hybrid', 'rag-generation', 'evaluation-data', 'metrics', 'evidence', 'decisions', 'scope', 'next-steps',
@@ -119,7 +119,7 @@ export const projectOne = {
       'test_hybrid_search.py', 'test_lexical_search.py', 'test_parsing.py', 'test_search.py',
       'test_rag.py', 'test_generation.py',
     ],
-    testStatus: 'This is a documented prior run in the public README at 770b1f5; no current Project 1 suite run is represented here.',
+    testStatus: 'This is a documented prior run of the repository test suite; no current Project 1 suite run is represented here.',
     testCoverage: [
       'API health, upload/list/detail, invalid and duplicate uploads, search routes, /ask integration and validation, and saved report serving',
       'Text normalization, malformed/empty parsing, chunk overlap and source metadata',
@@ -133,7 +133,7 @@ export const projectOne = {
       { name: 'Per-question traces', path: 'evaluation/results/per_question.csv', status: 'Checked-in artifact' },
       { name: 'Automated tests', path: 'tests/', status: 'Checked-in test source' },
       { name: 'Test output', path: 'Not captured', status: 'Not captured for this portfolio case study' },
-      { name: 'Dashboard screenshot', path: 'Not captured', status: 'Not captured for this portfolio case study' },
+      { name: 'Additional dashboard screenshot', path: 'Not captured', status: 'Not captured for this portfolio case study; system evidence is shown above' },
     ],
   },
   decisions: [

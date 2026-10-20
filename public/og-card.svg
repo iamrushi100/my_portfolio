@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Rushikesh Wani — AI Engineer &amp; Cybersecurity</title>
+  <desc id="desc">Portfolio focused on retrieval, evaluation, and security engineering.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0a1117"/><stop offset="1" stop-color="#101b21"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#3b7f79" stop-opacity=".27"/><stop offset="1" stop-color="#0a1117" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="940" cy="300" r="340" fill="url(#glow)"/>
+  <g fill="none" stroke="#9bcfc5" stroke-opacity=".2">
+    <circle cx="935" cy="300" r="220"/><circle cx="935" cy="300" r="165"/><circle cx="935" cy="300" r="110"/>
+    <path d="M712 300h446M935 77v446M779 144l312 312M1091 144 779 456"/>
+    <path d="M728 219 868 133 1010 198 1100 316 1014 437 868 480 755 379z"/>
+  </g>
+  <g fill="#9bcfc5"><circle cx="935" cy="300" r="8"/><circle cx="868" cy="133" r="5"/><circle cx="1010" cy="198" r="6"/><circle cx="1100" cy="316" r="4"/><circle cx="868" cy="480" r="5"/><circle cx="755" cy="379" r="4"/></g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="76" y="86" fill="#9bcfc5" font-size="17" letter-spacing="4">AI / GENAI ENGINEERING</text>
+    <text x="72" y="196" fill="#f0f0e9" font-size="63" font-weight="700" letter-spacing="-2">Rushikesh Wani</text>
+    <text x="76" y="270" fill="#f0f0e9" font-size="35">AI engineering for retrieval,</text>
+    <text x="76" y="317" fill="#9bcfc5" font-size="35" font-style="italic">evaluation, and security.</text>
+    <text x="76" y="391" fill="#a2b1b1" font-size="19">B.E. Computer Engineering · Honors in Cybersecurity</text>
+    <text x="76" y="559" fill="#718487" font-family="monospace" font-size="15" letter-spacing="2">EVIDENCE · SYSTEMS · EVALUATION</text>
+  </g>
+</svg>

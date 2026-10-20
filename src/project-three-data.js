@@ -1,12 +1,12 @@
 export const projectThree = {
   id: 'project-3',
   name: 'RAGWatch',
-  title: 'RAGWatch — RAG Evaluation & Quality Monitor',
+  title: 'RAGWatch — Retrieval Quality Evaluation',
   status: 'Local-first retrieval evaluation tool',
   description: 'Measures ranked retrieval against labeled questions, compares saved runs, and exposes per-question evidence behind score changes.',
   overviewSummary: 'TF-IDF baseline · six-question fictional fixture · controlled/artificial experiment reverses the complete baseline rankings to check that the metrics detect degraded ordering.',
   tags: ['Python', 'scikit-learn', 'TF-IDF', 'pytest', 'Streamlit', 'SQLite'],
-  caseStudyPath: '/projects/project-3',
+  caseStudyPath: '/projects/ragwatch',
   repositoryUrl: 'https://github.com/iamrushi100/RAGWatch',
   sourceStatus: 'Public GitHub repository',
   requiredSections: [
@@ -81,12 +81,12 @@ export const projectThree = {
     { label: 'empty_retrieval_results', detail: 'The retriever returned no ranked chunks.' },
   ],
   evidence: [
-    { label: 'Automated tests', detail: '12 pytest modules cover chunking, dataset validation, retrieval, metrics, regression, failure analysis, CLI/reporting, thresholds, dashboard data, and SQLite history. Documented prior repository run: 174 passed; no current test run is claimed.' },
-    { label: 'Evaluation reports', detail: 'Checked-in JSON includes aggregate and per-question metrics; the dashboard reads existing reports.' },
-    { label: 'Controlled regression report', detail: 'Checked-in report with baseline, full-ranking inversion, per-question values, and candidate-minus-baseline aggregates.' },
-    { label: 'SQLite history + dashboard', detail: 'Optional run persistence and compatible-run comparisons; Streamlit view is read-only. No dashboard screenshot is captured here.' },
-    { label: 'Continuous integration', detail: 'GitHub Actions workflow is checked in and runs pytest on pushes and pull requests with Python 3.13; current remote CI status is not verified.' },
-    { label: 'Test output', detail: 'Not captured for this case study; the 174-test count is a documented prior run.' },
+    { label: 'Automated tests · CHECKED-IN', detail: '12 pytest modules cover the evaluator and dashboard helpers. Current repository HEAD 85382e6 was verified locally: 171 passed on 2026-10-19.' },
+    { label: 'Evaluation reports · CHECKED-IN', detail: 'Saved JSON reports include aggregate and per-question metrics from the small fictional fixture.' },
+    { label: 'Controlled regression report · CHECKED-IN', detail: 'Saved report compares the TF-IDF ranking with an artificial full-ranking reversal; it is not a production comparison.' },
+    { label: 'SQLite history + dashboard · CHECKED-IN', detail: 'Optional run persistence and compatible-run comparisons; the Streamlit view reads existing reports and history.' },
+    { label: 'Continuous integration · VERIFIED CI RUN', detail: 'GitHub Actions run 38068546601 succeeded with 171 passed on 2026-10-10 at commit 18a1935. Later master commit 85382e6 changed only documentation and saved reports.', url: 'https://github.com/iamrushi100/RAGWatch/actions/runs/38068546601' },
+    { label: 'Raw test output · NOT CAPTURED', detail: 'No standalone test-output file is checked into this portfolio.' },
   ],
   decisions: [
     { title: 'Use an interpretable baseline', detail: 'TF-IDF and cosine similarity provide a small, deterministic lexical baseline without paid APIs or model downloads; paraphrase coverage is limited.' },
