@@ -72,7 +72,7 @@ function RegressionTable() {
 }
 
 function EvidenceCard({ item, index }) {
-  return <article className="p3-evidence-card"><span>0{index + 1} / EVIDENCE</span><h3>{item.label}</h3><p>{item.detail}</p>{item.url && <a className="p3-evidence-link" href={item.url} target="_blank" rel="noreferrer">Open verified workflow run <span aria-hidden="true">↗</span></a>}</article>;
+  return <article className="p3-evidence-card"><span>0{index + 1} / EVIDENCE</span><h3>{item.label}</h3><p>{item.detail}</p>{item.url && <a className="p3-evidence-link" href={item.url} target="_blank" rel="noreferrer">Open verified artifact <span aria-hidden="true">↗</span></a>}</article>;
 }
 
 function EvidenceGallery() {
